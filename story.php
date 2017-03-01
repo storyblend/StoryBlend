@@ -56,6 +56,8 @@ else {
 }
 
 ?>
+
+
 <html>
 
 
@@ -109,6 +111,9 @@ else {
                     <li>
                         <a href="welcome.php">Stories</a>
                     </li>
+					<li>
+                        <a href="messages.php">Messages</a>
+                    </li>
                     <li>
                         <a href="logout.php">Logout</a>
                     </li>
@@ -149,8 +154,8 @@ $minute = substr($time, 14, 2);
 
 //ECHO VARIABLES
 echo "<pre style='white-space:pre-wrap;border:0px;background-color:transparent;font-family:arial;'>" . htmlspecialchars($post) . "</pre>";
-echo "<p width='100%' style='text-align:right;'>" . $month . "/" . $day . "/" . $year . " at " . $hour . ":" . $minute . "</p><hr>";
-
+echo "<p width='100%' style='text-align:right;'>" . $month . "/" . $day . "/" . $year . " at " . $hour . ":" . $minute . "</p>";
+echo "<button class='btn btn-sm'><a href='delete.php?id=" . $row['id_post'] . "?story=" . mysql_real_escape_string($_GET['id']) . "'>X</a></button><hr>";
 }
 
 ?>

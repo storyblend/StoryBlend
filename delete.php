@@ -5,31 +5,10 @@ include('session.php');
 
 $errors = "";
 
-
-
-/////////////////////
-//CHECK USER INPUT//
-///////////////////
-
-//story name check
-	if (!(empty($_POST['story_name']))){
-    $story_name = $_POST['story_name'];
-	}
-else {
-	$errors = "<br>Story name left blank";
-}
-
-//story description check
-	if (!(empty($_POST['story_description']))) {
-				$story_description = $_POST['story_description'];
-			}
-else {
-	$errors = "<br>Story description left blank";
-}
-
 ///////////
 //SUBMIT//
 /////////
+
 
    if($_SERVER["REQUEST_METHOD"] == "POST") {
    
@@ -40,11 +19,13 @@ else {
     die("Connection failed: " . $con->connect_error);
 	} 
 
-	$sql = "INSERT INTO story_list (created_by_id, story_name, story_description) VALUES ('$user_id', '$story_name', '$story_description')";
-
+	$sql = "DELETE posts FROM posts WHERE id_post= " . mysql_real_escape_string($_GET['id']) . "";
+	
 	if ($con->query($sql) === TRUE) {
-    header('Location: welcome.php');
-	} else {
+	header('Location: welcome.php');
+    //header('Location: story.php?id=' . mysql_real_escape_string($_GET['story']));
+	} 
+	else {
     echo "Error: " . $sql . "<br>" . $con->error;
 	}
 
@@ -126,37 +107,11 @@ else {
     <div class="content-section-a" style="min-height:100%;margin-bottom:-150px;">
 
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">New Story</h2><hr>
-						<form action = "" method = "post">
-							<div class="form-group">
+			<h2 class="section-heading">Are you sure you want to delete this post?</h2><hr>
+			<form action = "" method = "post"> 
+			<input type='submit'>
 
-                            <h3>Story Name:</h3><input type="text" name="story_name" id="story_name" class="form-control" placeholder="Story Name">
-							</div>
-							<div class="form-group">
-                            <label for="user" class="sr-only">user</label>
-                            <h3>Description:</h3><input type="text" name="story_description" id="user" class="form-control" placeholder="Description">
-							</div>
-
-
-							<div class="form-group">
-
-                            <h3>Share with user?</h3><input type="text" name="story_name" id="story_name" class="form-control" placeholder="Story Name">
-							</div>
-							<div class="form-group">
-							<br>
-                            <input type="checkbox" name="random" value="Bike"> Random Collaborator<br><br>
-							<input type="checkbox" name="friend" value="Bike"> Pick a friend<br><br>
-							</div>
-
-											<input type="submit" id="btn-login" style="background-color:#ABB2B9;" class="btn btn-custom btn-lg btn-block" value="Create Story">
-											</form>
-			</div>
-            </div>
-
+			</form>
         </div>
         <!-- /.container -->
 
