@@ -6,7 +6,7 @@
 ///////////////////
 //Select from DB//
 ///////////////// 
-$query = "SELECT * FROM posts WHERE story_list_id = " . mysql_real_escape_string($_GET['id']) . "";
+$query = "SELECT * FROM posts WHERE story_list_id = " . mysql_real_escape_string($_GET['s']) . "";
 $result = mysqli_query($con, $query);
 
 
@@ -39,7 +39,7 @@ else {
     die("Connection failed: " . $con->connect_error);
 	} 
 
-	$sql = "INSERT INTO posts (post, story_list_id, owned_by_id) VALUES ('$post', '" . mysql_real_escape_string($_GET['id']) . "', '$user_id')";
+	$sql = "INSERT INTO posts (post, story_list_id, owned_by_id) VALUES ('$post', '" . mysql_real_escape_string($_GET['s']) . "', '$user_id')";
 
 	if ($con->query($sql) === TRUE) {
     header('Location: welcome.php');
@@ -155,7 +155,7 @@ $minute = substr($time, 14, 2);
 //ECHO VARIABLES
 echo "<pre style='white-space:pre-wrap;border:0px;background-color:transparent;font-family:arial;'>" . htmlspecialchars($post) . "</pre>";
 echo "<p width='100%' style='text-align:right;'>" . $month . "/" . $day . "/" . $year . " at " . $hour . ":" . $minute . "</p>";
-echo "<button class='btn btn-sm'><a href='delete.php?id=" . $row['id_post'] . "&story=" . $_GET['id'] . "'>X</a></button><hr>";
+echo "<button class='btn btn-sm'><a href='delete.php?p=" . $row['id_post'] . "&story=" . $_GET['s'] . "'>X</a></button><hr>";
 }
 
 ?>

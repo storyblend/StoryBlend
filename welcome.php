@@ -168,7 +168,7 @@ $result = mysqli_query($con, $query);
 		//SET UP TABLE
 	echo "<table border='1' width='100%'><tr><td width='50%' style='padding:10px;'>";
 		//ECHO VARIABLES
-    echo "<a href='story.php?id=" . $row['id'] . "'>" . $story_name . "</a></td><td width='100%' style='padding:10px;'>" . $story_description  ."<br>";
+    echo "<a href='story.php?s=" . $row['id'] . "'>" . $story_name . "</a></td><td width='100%' style='padding:10px;'>" . $story_description  ."<br>";
 		//CLOSE TABLE
 	echo "</td></tr></table>";
     }
