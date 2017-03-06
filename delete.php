@@ -22,7 +22,7 @@ $errors = "";
 	$sql = "DELETE posts FROM posts WHERE id_post= " . mysql_real_escape_string($_GET['p']) . "";
 	
 	if ($con->query($sql) === TRUE) {
-	header('Location: welcome.php');
+	header("Location: story.php?s=" . mysql_real_escape_string($_GET['story']) . "");
     //header('Location: story.php?id=' . mysql_real_escape_string($_GET['story']));
 	} 
 	else {
