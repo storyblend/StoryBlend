@@ -152,7 +152,7 @@ $minute = substr($time, 14, 2);
 //ECHO VARIABLES
 echo "<pre style='white-space:pre-wrap;border:0px;background-color:transparent;font-family:arial;'>" . htmlspecialchars($post) . "</pre>";
 echo "<p width='100%' style='text-align:right;'>" . $month . "/" . $day . "/" . $year . " at " . $hour . ":" . $minute . "</p>";
-echo "<button class='btn btn-sm'><a href='delete.php?p=" . $row['id_post'] . "&story=" . $_GET['s'] . "'>X</a></button><hr>";
+echo "<a href='delete.php?p=" . $row['id_post'] . "&story=" . $_GET['s'] . "'><button class='btn btn-sm'>X</button></a><hr>";
 }
 
 ?>
