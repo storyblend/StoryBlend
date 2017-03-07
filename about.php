@@ -1,65 +1,4 @@
-<?php
-   include('session.php');
-   include('connect.php');
-
-   
-///////////////////
-//Select from DB//
-///////////////// 
-$query = "SELECT * FROM posts WHERE story_list_id = " . mysql_real_escape_string($_GET['s']) . "";
-$result = mysqli_query($con, $query);
-
-
-
-
-/////////////////////
-//CHECK USER INPUT//
-///////////////////
-
-//post check
-	if (!(empty($_POST['post_input']))){
-    $post = $_POST['post_input'];
-	}
-else {
-	$errors = "<br>Post is blank";
-}
-
-
-///////////
-//SUBMIT//
-/////////
-
-
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-   
-   if (empty($errors)) {
-   
-	// Check connection
-	if ($con->connect_error) {
-    die("Connection failed: " . $con->connect_error);
-	} 
-
-	$sql = "INSERT INTO posts (post, story_list_id, owned_by_id) VALUES ('$post', '" . mysql_real_escape_string($_GET['s']) . "', '$user_id')";
-
-	if ($con->query($sql) === TRUE) {
-    header("Location: story.php?s=" . mysql_real_escape_string($_GET['s']) . "");
-	} else {
-    echo "Error: " . $sql . "<br>" . $con->error;
-	}
-
-	$con->close();
-   }
-   else
-   {
-	   echo "$errors";
-   }
-}
-
-?>
-
-
-<html>
-
+<html lang="en">
 
 <head>
 
@@ -103,12 +42,12 @@ else {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav" href="welcome.php">Story Blend</a>
+                <a class="navbar-brand topnav" href="#">Story Blend</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
+					<li>
                         <a href="welcome.php">Stories</a>
                     </li>
 					<li>
@@ -125,50 +64,24 @@ else {
     </nav>
 
 
+  
 
     <!-- Page Content -->
 
 	<a  name="about"></a>
-    <div class="content-section-a" style="min-height:100%;margin-bottom:-150px;">
+    <div class="content-section-a">
 
         <div class="container">
             <div class="row">
-	<br><br>
-			
-<?php
-	
-while($row = mysqli_fetch_assoc($result))
-
-{
-
-$post = $row['post'];
-$time = $row['timestamp'];
-
-$year = substr($time, 0, 4);
-$month = substr($time, 5, 2);
-$day = substr($time, 8, 2);
-$hour = substr($time, 11, 2);
-$minute = substr($time, 14, 2);
-
-
-
-//ECHO VARIABLES
-echo "<pre style='white-space:pre-wrap;border:0px;background-color:transparent;font-family:arial;'>" . htmlspecialchars($post) . "</pre>";
-echo "<p width='100%' style='text-align:right;'>" . $month . "/" . $day . "/" . $year . " at " . $hour . ":" . $minute . "</p>";
-echo "<a href='delete.php?p=" . $row['id_post'] . "&story=" . $_GET['s'] . "'><button class='btn btn-sm'>X</button></a><hr>";
-}
-
-?>
-
-<br><br>
-
-<form action = "" method = "post">
-<textarea name="post_input" style="width:100%;" rows="10"></textarea>
-<br><br><input type="submit" id="btn-login" style="background-color:#ABB2B9;" class="btn btn-custom btn-lg btn-block" value="Add to Story">
-</form>
-
-
-
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">A new way to write:<br>How you want.</h2>
+                    <p class="lead">Set the rules and write your story how you want. With a few friends or hundreds of strangers. Set the rules and write your story how you want. With a few friends or hundreds of strangers. <br><br> Set the rules and write your story how you want. With a few friends or hundreds of strangers.</p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="img/ipad.png" alt="">
+                </div>
             </div>
 
         </div>
@@ -178,15 +91,4 @@ echo "<a href='delete.php?p=" . $row['id_post'] . "&story=" . $_GET['s'] . "'><b
     <!-- /.content-section-a -->
 
 
-    </div>
-    <!-- /.banner -->
-
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-</body>
-</html>
+   
