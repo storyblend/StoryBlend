@@ -109,8 +109,8 @@ $errors = "";
         <div class="container">
 			<h2 class="section-heading">Are you sure you want to delete this post?</h2><hr>
 			<form action = "" method = "post"> 
-			<input type='submit'>
-
+			<input type='submit' value="Delete" class="btn btn-danger">
+			<button action="story.php?s=<?php mysql_real_escape_string($_GET['p']) ?>" style="margin-left:30px;" class="btn btn-default">Nevermind</button>
 			</form>
         </div>
         <!-- /.container -->
