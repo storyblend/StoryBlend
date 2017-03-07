@@ -42,7 +42,7 @@ else {
 	$sql = "INSERT INTO posts (post, story_list_id, owned_by_id) VALUES ('$post', '" . mysql_real_escape_string($_GET['s']) . "', '$user_id')";
 
 	if ($con->query($sql) === TRUE) {
-    header('Location: welcome.php');
+    header("Location: story.php?s=" . mysql_real_escape_string($_GET['s']) . "");
 	} else {
     echo "Error: " . $sql . "<br>" . $con->error;
 	}
@@ -110,9 +110,6 @@ else {
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="welcome.php">Stories</a>
-                    </li>
-					<li>
-                        <a href="messages.php">Messages</a>
                     </li>
                     <li>
                         <a href="logout.php">Logout</a>
