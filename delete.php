@@ -110,8 +110,8 @@ $errors = "";
 			<h2 class="section-heading">Are you sure you want to delete this post?</h2><hr>
 			<form action = "" method = "post"> 
 			<input type='submit' value="Delete" class="btn btn-danger">
-			<button action="story.php?s=<?php mysql_real_escape_string($_GET['p']) ?>" style="margin-left:30px;" class="btn btn-default">Nevermind</button>
 			</form>
+					<a href="welcome.php">Nevermind</a>
         </div>
         <!-- /.container -->
 
@@ -122,21 +122,7 @@ $errors = "";
     </div>
     <!-- /.banner -->
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="list-inline">
-                        <li>
-                            <a href="inde.php">Home</a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted small">Copyright &copy; Story Blend. All Rights Reserved</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+ 
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
