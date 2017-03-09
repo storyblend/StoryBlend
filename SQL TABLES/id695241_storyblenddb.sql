@@ -30,6 +30,7 @@ CREATE TABLE `posts` (
   `id_post` int(50) NOT NULL,
   `story_list_id` int(11) NOT NULL,
   `owned_by_id` int(50) NOT NULL,
+  `post` varchar(300) NOT NULL,
   `timestamp` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ;
 
