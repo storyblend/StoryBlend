@@ -55,6 +55,7 @@
 								<li><a href="welcome.php">Stories</a></li>
 								<li><a href="about.php">About</a></li>
 								<li><a href="logout.php">Logout</a></li>
+								<li><a href="delte_stories.php">Delete Story</a></li>
 							</ul>
 						</div>
 					</li>
