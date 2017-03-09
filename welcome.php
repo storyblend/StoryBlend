@@ -160,7 +160,7 @@
 					<a href="create_story.php"><button class="btn btn-lg">Create New Story</button></a><br><br>
 <?php
 
-$query = "SELECT * FROM story_list WHERE created_by_id = $user_id";
+$query = "SELECT * FROM `story_list` WHERE `created_by_id` = $user_id";
 
 $result = mysqli_query($con, $query);
 

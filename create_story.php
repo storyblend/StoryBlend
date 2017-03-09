@@ -16,7 +16,7 @@ $errors = "";
     $story_name = $_POST['story_name'];
 	}
 else {
-	$errors = "<br>Story name left blank";
+	$errors = "<br><br><br>Story name left blank";
 }
 
 //story description check
@@ -24,7 +24,16 @@ else {
 				$story_description = $_POST['story_description'];
 			}
 else {
-	$errors = "<br>Story description left blank";
+	$errors = "<br><br><br>Story description left blank";
+}
+
+
+//story share with user check
+	if (!(empty($_POST['sharewith']))) {
+				$sharedwith = $_POST['sharewith'];
+			}
+else {
+	$errors = "<br><br><br>Share with left blank";
 }
 
 ///////////
@@ -40,7 +49,7 @@ else {
     die("Connection failed: " . $con->connect_error);
 	} 
 
-	$sql = "INSERT INTO story_list (created_by_id, story_name, story_description) VALUES ('$user_id', '$story_name', '$story_description')";
+	$sql = "INSERT INTO story_list (created_by_id, shared_with, story_name, story_description) VALUES ('$user_id', '$sharedwith', '$story_name', '$story_description')";
 
 	if ($con->query($sql) === TRUE) {
     header('Location: welcome.php');
@@ -152,12 +161,10 @@ else {
 
 							<div class="form-group">
 
-                            <h3>Share with user?</h3><input type="text" name="story_name" id="story_name" class="form-control" placeholder="Story Name">
+                            <h3>Share with user?</h3><input type="text" name="sharewith" id="sharewith" class="form-control" placeholder="Username">
 							</div>
 							<div class="form-group">
 							<br>
-                            <input type="checkbox" name="random" value="Bike"> Random Collaborator<br><br>
-							<input type="checkbox" name="friend" value="Bike"> Pick a friend<br><br>
 							</div>
 
 											<input type="submit" id="btn-login" style="background-color:#ABB2B9;" class="btn btn-custom btn-lg btn-block" value="Create Story">
