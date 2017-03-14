@@ -52,10 +52,9 @@
 							<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="margin-top:7px; width:100px;">Options
 							<span class="caret"></span></button>
 							<ul class="dropdown-menu">
-								<li><a href="welcome.php">Stories</a></li>
-								<li><a href="about.php">About</a></li>
-								<li><a href="logout.php">Logout</a></li>
-								<li><a href="delte_stories.php">Delete Story</a></li>
+								<li><a href="#top">Top</a></li>
+								<li><a href="#about">About</a></li>
+								<li><a href="#login">Login</a></li>
 							</ul>
 						</div>
 					</li>
@@ -67,14 +66,15 @@
     </nav>
 
 
-  
+
+    <!-- /.intro-header -->
 
     <!-- Page Content -->
 
 	<a  name="about"></a>
     <div class="content-section-a">
 
-        <div class="container"  style="min-height:100%;">
+        <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
@@ -94,4 +94,18 @@
     <!-- /.content-section-a -->
 
 
-   
+    <!-- /.content-section-a -->
+
+
+    <!-- /.banner -->
+
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
