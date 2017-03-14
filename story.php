@@ -116,7 +116,7 @@ else {
 								<li><a href="welcome.php">Stories</a></li>
 								<li><a href="about.php">About</a></li>
 								<li><a href="logout.php">Logout</a></li>
-								<li><a href="delte_stories.php">Delete Story</a></li>
+								<li><a href="delete_story.php">Delete Story</a></li>
 							</ul>
 						</div>
 					</li>
@@ -156,9 +156,10 @@ $minute = substr($time, 14, 2);
 
 
 //ECHO VARIABLES
+
 echo "<p style='white-space:pre-wrap;border:0px;background-color:transparent;font-family:arial;'>" . htmlspecialchars($post) . "</p>";
 echo "<a style='float:right;' href='delete.php?p=" . $row['id_post'] . "&story=" . $_GET['s'] . "'>Delete</a><br>";
-echo "<p width='100%' style='text-align:right; font-size:12px;'>" . $month . "/" . $day . "/" . $year . " at " . $hour . ":" . $minute . "</p><hr>";
+echo "<p width='100%' style='text-align:right; font-size:12px;'>" . $login_session . " - " . $month . "/" . $day . "/" . $year . " at " . $hour . ":" . $minute . "</p><hr>";
 
 }
 

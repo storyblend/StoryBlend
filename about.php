@@ -52,9 +52,9 @@
 							<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="margin-top:7px; width:100px;">Options
 							<span class="caret"></span></button>
 							<ul class="dropdown-menu">
-								<li><a href="#top">Top</a></li>
-								<li><a href="#about">About</a></li>
-								<li><a href="#login">Login</a></li>
+								<li><a href="welcome.php">Stories</a></li>
+								<li><a href="about.php">About</a></li>
+								<li><a href="logout.php">Logout</a></li>
 							</ul>
 						</div>
 					</li>
@@ -72,7 +72,7 @@
     <!-- Page Content -->
 
 	<a  name="about"></a>
-    <div class="content-section-a">
+    <div class="content-section-a" style="height:100%;">
 
         <div class="container">
             <div class="row">
