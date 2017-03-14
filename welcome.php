@@ -95,6 +95,18 @@
                     <p class="lead">Your stories are displayed here:<br><br></p>
 					
 					<a href="create_story.php"><button class="btn btn-lg">Create New Story</button></a><br><br>
+					
+					
+					
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#All">All Stories</a></li>
+  <li><a data-toggle="tab" href="#mine">My Stories</a></li>
+  <li><a data-toggle="tab" href="#shared">Shared With Me</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="All" class="tab-pane fade in active">
+    <h3>All Stories</h3>
 <?php
 
 $query = "SELECT * FROM `story_list` WHERE `created_by_id` = $user_id OR `shared_with` = '$login_session'";
@@ -116,6 +128,60 @@ $result = mysqli_query($con, $query);
     }
 
 ?>
+  </div>
+  <div id="mine" class="tab-pane fade">
+    <h3>My Stories</h3>
+<?php
+
+$query = "SELECT * FROM `story_list` WHERE `created_by_id` = $user_id";
+
+$result = mysqli_query($con, $query);
+
+
+    while($row = mysqli_fetch_assoc($result))
+    {
+        $story_name = $row['story_name'];
+        $story_description = $row['story_description'];
+		
+		//SET UP TABLE
+	echo "<table border='1' width='100%'><tr><td width='50%' style='padding:10px;'>";
+		//ECHO VARIABLES
+    echo "<a href='story.php?s=" . $row['id'] . "'>" . $story_name . "</a></td><td width='100%' style='padding:10px;'>" . $story_description  ."<br>";
+		//CLOSE TABLE
+	echo "</td></tr></table>";
+    }
+
+?>
+  </div>
+  <div id="shared" class="tab-pane fade">
+    <h3>Shared With Me</h3>
+<?php
+
+$query = "SELECT * FROM `story_list` WHERE `shared_with` = '$login_session'";
+
+$result = mysqli_query($con, $query);
+
+
+    while($row = mysqli_fetch_assoc($result))
+    {
+        $story_name = $row['story_name'];
+        $story_description = $row['story_description'];
+		
+		//SET UP TABLE
+	echo "<table border='1' width='100%'><tr><td width='50%' style='padding:10px;'>";
+		//ECHO VARIABLES
+    echo "<a href='story.php?s=" . $row['id'] . "'>" . $story_name . "</a></td><td width='100%' style='padding:10px;'>" . $story_description  ."<br>";
+		//CLOSE TABLE
+	echo "</td></tr></table>";
+    }
+
+?>
+  </div>
+</div>
+
+
+
+
 
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
