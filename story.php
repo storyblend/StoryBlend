@@ -39,7 +39,7 @@ else {
     die("Connection failed: " . $con->connect_error);
 	} 
 
-	$sql = "INSERT INTO posts (post, story_list_id, owned_by_id) VALUES ('$post', '" . mysql_real_escape_string($_GET['s']) . "', '$user_id')";
+	$sql = "INSERT INTO posts (author, post, story_list_id, owned_by_id) VALUES ('$login_session', '$post', '" . mysql_real_escape_string($_GET['s']) . "', '$user_id')";
 
 	if ($con->query($sql) === TRUE) {
     header("Location: story.php?s=" . mysql_real_escape_string($_GET['s']) . "");
@@ -159,7 +159,7 @@ $minute = substr($time, 14, 2);
 
 echo "<p style='white-space:pre-wrap;border:0px;background-color:transparent;font-family:arial;'>" . htmlspecialchars($post) . "</p>";
 echo "<a style='float:right;' href='delete.php?p=" . $row['id_post'] . "&story=" . $_GET['s'] . "'>Delete</a><br>";
-echo "<p width='100%' style='text-align:right; font-size:12px;'>" . $login_session . " - " . $month . "/" . $day . "/" . $year . " at " . $hour . ":" . $minute . "</p><hr>";
+echo "<p width='100%' style='text-align:right; font-size:12px;'>" . $row['author'] . " - " . $month . "/" . $day . "/" . $year . " at " . $hour . ":" . $minute . "</p><hr>";
 
 }
 
