@@ -186,16 +186,7 @@ $result = mysqli_query($con, $query);
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
 					<br><br>
-						<h2>Story Blend Chat</h2>
-        
-        <p id="name-area"></p>
-        
-        <div id="chat-wrap"><div id="chat-area"></div></div>
-        
-        <form id="send-message-area">
-            <p>Your message: </p>
-            <textarea id="sendie" maxlength = '100' ></textarea>
-        </form>
+        <div id="tlkio" data-channel="StoryBlend" data-nickname=<?php echo $login_session; ?> style="width:100%;height:100%;"></div><script async src="http://tlk.io/embed.js" type="text/javascript"></script>
                 </div>
             </div>
 
