@@ -21,7 +21,7 @@ $result = mysqli_query($con, $query);
     $post = $_POST['post_input'];
 	}
 else {
-	$errors = "<br>Post is blank";
+	$errors = "<br><br><br>Post is blank";
 }
 
 
