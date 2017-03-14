@@ -186,7 +186,7 @@ $result = mysqli_query($con, $query);
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
 					<br><br>
-        <div id="tlkio" data-channel="StoryBlend" data-nickname=<?php echo $login_session; ?> style="width:100%;height:100%;"></div><script async src="http://tlk.io/embed.js" type="text/javascript"></script>
+        <div id="tlkio" data-channel="StoryBlend" data-nickname=<?php echo $login_session; ?> style="width:100%;height:600px;"></div><script async src="http://tlk.io/embed.js" type="text/javascript"></script>
                 </div>
             </div>
 
