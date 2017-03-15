@@ -42,7 +42,7 @@
     <script type="text/javascript" src="chat.js"></script>
 </head>
 
-<body onload="setInterval('chat.update()', 1000)">
+<body>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
@@ -186,7 +186,7 @@ $result = mysqli_query($con, $query);
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
 					<br><br>
-        <div id="tlkio" data-channel="StoryBlend" data-nickname=<?php echo $login_session; ?> style="width:100%;height:600px;"></div><script async src="http://tlk.io/embed.js" type="text/javascript"></script>
+        <script type="text/javascript" src="//www3.smartchatbox.com/shoutbox/start.php?key=754884332"></script>
                 </div>
             </div>
 
