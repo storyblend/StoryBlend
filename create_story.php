@@ -7,6 +7,27 @@ $errors = "";
 
 
 
+
+
+///////////
+//SUBMIT//
+/////////
+
+   if($_SERVER["REQUEST_METHOD"] == "POST") {
+   
+   if (empty($errors)) {
+   
+	// Check connection
+	if ($con->connect_error) {
+    die("Connection failed: " . $con->connect_error);
+	} 
+	
+	//PREPARE AND BIND
+	$stmt = $con->prepare("INSERT INTO story_list (created_by_id, shared_with, story_name, story_description) VALUES (?,?,?,?)");
+	$stmt->bind_param("isss", $user_id, $sharedwith, $story_name, $story_description);
+	
+	
+	
 /////////////////////
 //CHECK USER INPUT//
 ///////////////////
@@ -35,36 +56,18 @@ else {
 else {
 	$errors = "<br><br><br>Share with left blank";
 }
+	
+$stmt->execute();
+$stmt->close();
+header('Location:welcome.php');
 
-///////////
-//SUBMIT//
-/////////
-
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-   
-   if (empty($errors)) {
-   
-	// Check connection
-	if ($con->connect_error) {
-    die("Connection failed: " . $con->connect_error);
-	} 
-
-	$sql = "INSERT INTO story_list (created_by_id, shared_with, story_name, story_description) VALUES ('$user_id', '$sharedwith', '$story_name', '$story_description')";
-
-	if ($con->query($sql) === TRUE) {
-    header('Location: welcome.php');
-	} else {
-    echo "Error: " . $sql . "<br>" . $con->error;
-	}
-
-	$con->close();
-   }
-   else
-   {
-	   echo "$errors";
-   }
 }
+
+   }
 ?>
+
+<!DOCTYPE html>
+
 <html>
 
 
