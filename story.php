@@ -39,21 +39,16 @@ else {
     die("Connection failed: " . $con->connect_error);
 	} 
 
-	$sql = "INSERT INTO posts (author, post, story_list_id, owned_by_id) VALUES ('$login_session', '$post', '" . mysql_real_escape_string($_GET['s']) . "', '$user_id')";
 
-	if ($con->query($sql) === TRUE) {
-    header("Location: story.php?s=" . mysql_real_escape_string($_GET['s']) . "");
-	} else {
-    echo "Error: " . $sql . "<br>" . $con->error;
-	}
+	$stmt = $con->prepare("INSERT INTO posts (author, post, story_list_id, owned_by_id) VALUES (?,?,?,?)");
+	$stmt->bind_param("ssii", $login_session, $post, mysql_real_escape_string($_GET['s']), $user_id);
 
-	$con->close();
-   }
-   else
-   {
-	   echo "$errors";
-   }
+	$stmt->execute();
+	$stmt->close();
+	header('Location: #');
+
 }
+   }
 
 ?>
 
