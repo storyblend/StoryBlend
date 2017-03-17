@@ -1,34 +1,13 @@
 <?php
-   include('session.php');
-   include('connect.php');
 
-   
-///////////////////
-//Select from DB//
-///////////////// 
-$query = "SELECT * FROM posts WHERE story_list_id = " . mysql_real_escape_string($_GET['s']) . "";
-$result = mysqli_query($con, $query);
+include('connect.php');
+include('session.php');
 
-
-
-
-/////////////////////
-//CHECK USER INPUT//
-///////////////////
-
-//post check
-	if (!(empty($_POST['post_input']))){
-    $post = $_POST['post_input'];
-	}
-else {
-	$errors = "<br><br><br>Post is blank";
-}
-
+$errors = "";
 
 ///////////
 //SUBMIT//
 /////////
-
 
    if($_SERVER["REQUEST_METHOD"] == "POST") {
    
@@ -39,11 +18,12 @@ else {
     die("Connection failed: " . $con->connect_error);
 	} 
 
-	$sql = "INSERT INTO posts (author, post, story_list_id, owned_by_id) VALUES ('$login_session', '$post', '" . mysql_real_escape_string($_GET['s']) . "', '$user_id')";
-
+	$sql = "DELETE story_list FROM story_list WHERE id= " . mysql_real_escape_string($_GET['story']) . "";
+	
 	if ($con->query($sql) === TRUE) {
-    header("Location: story.php?s=" . mysql_real_escape_string($_GET['s']) . "");
-	} else {
+	echo "S U C C E S S";
+	} 
+	else {
     echo "Error: " . $sql . "<br>" . $con->error;
 	}
 
@@ -53,10 +33,47 @@ else {
    {
 	   echo "$errors";
    }
+
 }
-
 ?>
+<?php
 
+include('connect.php');
+include('session.php');
+
+$errors = "";
+
+///////////
+//SUBMIT//
+/////////
+
+   if($_SERVER["REQUEST_METHOD"] == "POST") {
+   
+   if (empty($errors)) {
+   
+	// Check connection
+	if ($con->connect_error) {
+    die("Connection failed: " . $con->connect_error);
+	} 
+
+   	$sql2 = "DELETE posts FROM posts WHERE story_list_id= " . mysql_real_escape_string($_GET['story']) . "";
+	
+	if ($con->query($sql2) === TRUE) {
+	header("Location: welcome.php");
+	} 
+	else {
+    echo "Error: " . $sql2 . "<br>" . $con->error;
+	}
+
+	$con->close();
+   }
+   else
+   {
+	   echo "$errors";
+   }
+
+}
+?>
 
 <html>
 
@@ -116,11 +133,6 @@ else {
 								<li><a href="welcome.php">Stories</a></li>
 								<li><a href="about.php">About</a></li>
 								<li><a href="logout.php">Logout</a></li>
-								<li>
-								<?php
-								echo "<a href='delete_story	.php" . "?story=" . $_GET['s'] . "'>Delete Story</a>";
-								?>
-								</li>
 							</ul>
 						</div>
 					</li>
@@ -132,6 +144,8 @@ else {
     </nav>
 
 
+    <!-- Header -->
+
 
     <!-- Page Content -->
 
@@ -139,47 +153,13 @@ else {
     <div class="content-section-a" style="min-height:100%;margin-bottom:-150px;">
 
         <div class="container">
-            <div class="row">
-	<br><br>
-			
-<?php
-	
-while($row = mysqli_fetch_assoc($result))
-
-{
-
-$post = $row['post'];
-$time = $row['timestamp'];
-
-$year = substr($time, 0, 4);
-$month = substr($time, 5, 2);
-$day = substr($time, 8, 2);
-$hour = substr($time, 11, 2);
-$minute = substr($time, 14, 2);
-
-
-
-//ECHO VARIABLES
-
-echo "<p style='white-space:pre-wrap;border:0px;background-color:transparent;font-family:arial;'>" . htmlspecialchars($post) . "</p>";
-echo "<a style='float:right;' href='delete.php?p=" . $row['id_post'] . "&story=" . $_GET['s'] . "'>Delete</a><br>";
-echo "<p width='100%' style='text-align:right; font-size:12px;'>" . $row['author'] . " - " . $month . "/" . $day . "/" . $year . " at " . $hour . ":" . $minute . "</p><hr>";
-
-}
-
-?>
-
-<br><br>
-
-<form action = "" method = "post">
-<textarea name="post_input" style="width:100%;" rows="10"></textarea>
-<br><br><input type="submit" id="btn-login" style="background-color:#ABB2B9;" class="btn btn-custom btn-lg btn-block" value="Add to Story">
-</form>
-
-
-
-            </div>
-
+			<h2 class="section-heading">Are you sure you want to delete this entire story?</h2><hr>
+			<form action = "" method = "post"> 
+			<input type='submit' value="Delete" class="btn btn-danger">
+			</form>
+			<?php
+			echo "<a href='story.php" . "?s=" . $_GET['story'] . "'>Nevermind</a>";
+			?>
         </div>
         <!-- /.container -->
 
@@ -190,6 +170,7 @@ echo "<p width='100%' style='text-align:right; font-size:12px;'>" . $row['author
     </div>
     <!-- /.banner -->
 
+ 
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>

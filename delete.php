@@ -119,7 +119,9 @@ $errors = "";
 			<form action = "" method = "post"> 
 			<input type='submit' value="Delete" class="btn btn-danger">
 			</form>
-					<a href="welcome.php">Nevermind</a>
+			<?php
+			echo "<a href='story.php" . "?s=" . $_GET['story'] . "'>Nevermind</a>";
+			?>
         </div>
         <!-- /.container -->
 
