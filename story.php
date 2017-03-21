@@ -138,7 +138,15 @@ else {
 	<br><br>
 			
 <?php
-	
+function filterwords($post){
+ $filterWords = array('fuck', 'shit', 'cunt', 'nigger', 'faggot', 'asshole', 'bitch', 'asshat', 'dick');
+ $filterCount = sizeof($filterWords);
+ for($i=0; $i<$filterCount; $i++){
+  $post = preg_replace('/\b'.$filterWords[$i].'\b/ie',"str_repeat('*',strlen('$0'))",$post);
+ }
+ return $post;
+}	
+
 while($row = mysqli_fetch_assoc($result))
 
 {
@@ -154,9 +162,12 @@ $minute = substr($time, 14, 2);
 
 
 
+
+
+//$post = filterwords($post);
 //ECHO VARIABLES
 
-echo "<p style='white-space:pre-wrap;border:0px;background-color:transparent;font-family:arial;'>" . htmlspecialchars($post) . "</p>";
+echo "<p style='white-space:pre-wrap;border:0px;background-color:transparent;font-family:arial;'>" . filterwords($post) . "</p>";
 echo "<a style='float:right;' href='delete.php?p=" . $row['id_post'] . "&story=" . $_GET['s'] . "'>Delete</a><br>";
 echo "<p width='100%' style='text-align:right; font-size:12px;'>" . $row['author'] . " - " . $month . "/" . $day . "/" . $year . " at " . $hour . ":" . $minute . "</p><hr>";
 
