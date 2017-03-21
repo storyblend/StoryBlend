@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2017 at 05:12 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: Mar 21, 2017 at 04:48 PM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 5.5.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -31,9 +31,8 @@ CREATE TABLE `posts` (
   `story_list_id` int(11) NOT NULL,
   `owned_by_id` int(50) NOT NULL,
   `post` varchar(5000) NOT NULL,
-  `timestamp` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-  `author` varchar(2900) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `timestamp` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ;
 
 --
 -- Dumping data for table `posts`
@@ -44,7 +43,7 @@ INSERT INTO `posts` (`id_post`, `story_list_id`, `owned_by_id`, `post`, `timesta
 (17, 15, 1, 'A woman was driving back to her home in California from Washington to California. It was late evening and snowhad begun to fall before she finally reached the little Oregon town where she planed tospend the night. Tired and ready for a hot meal and a goodnightâ€™s sleep, she stopped at the first pla', '2017-02-21 16:53:25.146153', ''),
 (28, 14, 1, 'THe man on the mooon', '2017-03-07 17:02:34.104169', ''),
 (29, 14, 1, 'the cow jumped over the moon', '2017-03-07 17:02:41.742723', ''),
-(30, 15, 1, 'A spooky hotel manager came out of the door and said \"HARRO MEESTER DINBEY\"', '2017-03-07 17:10:33.193570', ''),
+(30, 15, 1, 'A spooky hotel manager came out of the door and said "HARRO MEESTER DINBEY"', '2017-03-07 17:10:33.193570', ''),
 (36, 18, 5, 'hi there, my name jeff', '2017-03-14 15:55:09.599858', ''),
 (37, 19, 5, 'epic win\r\n', '2017-03-14 16:03:10.417300', ''),
 (38, 19, 5, 'test', '2017-03-14 16:10:30.004128', 'testaccount');
@@ -73,7 +72,9 @@ INSERT INTO `story_list` (`id`, `created_by_id`, `shared_with`, `story_name`, `s
 (16, 1, 'collinbonker', 'sharing this', 'testing'),
 (17, 1, 'test', 'test sharing', 'yup'),
 (18, 5, 'asdf', 'asdf', 'asdf'),
-(19, 5, 'testaccount', 'Hi', 'My name is jeff');
+(19, 5, 'testaccount', 'Hi', 'My name is jeff'),
+(20, 1, 'test', 'test', 'test'),
+(21, 1, 'sql inj', 'sql inj', 'sql inj');
 
 -- --------------------------------------------------------
 
@@ -86,8 +87,8 @@ CREATE TABLE `user_info` (
   `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `username` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `timestamp` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `timestamp` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ;
 
 --
 -- Dumping data for table `user_info`
@@ -105,22 +106,10 @@ INSERT INTO `user_info` (`user_id`, `email`, `username`, `password`, `timestamp`
 --
 
 --
--- Indexes for table `posts`
---
-ALTER TABLE `posts`
-  ADD PRIMARY KEY (`id_post`);
-
---
 -- Indexes for table `story_list`
 --
 ALTER TABLE `story_list`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user_info`
---
-ALTER TABLE `user_info`
-  ADD PRIMARY KEY (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -130,17 +119,17 @@ ALTER TABLE `user_info`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id_post` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_post` int(50) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `story_list`
 --
 ALTER TABLE `story_list`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `user_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(50) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
