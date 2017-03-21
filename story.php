@@ -37,7 +37,7 @@ else {
 	// Check connection
 	if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
-	} 
+	}
 
 
 	$stmt = $con->prepare("INSERT INTO posts (author, post, story_list_id, owned_by_id) VALUES (?,?,?,?)");
@@ -52,6 +52,7 @@ else {
 
 ?>
 
+<!DOCTYPE html>
 
 <html>
 
@@ -113,7 +114,7 @@ else {
 								<li><a href="logout.php">Logout</a></li>
 								<li>
 								<?php
-								echo "<a href='delete_story	.php" . "?story=" . $_GET['s'] . "'>Delete Story</a>";
+								echo "<a href='delete_story.php" . "?story=" . $_GET['s'] . "'>Delete Story</a>";
 								?>
 								</li>
 							</ul>
