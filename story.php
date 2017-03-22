@@ -114,7 +114,7 @@ else {
 								<li><a href="logout.php">Logout</a></li>
 								<li>
 								<?php
-								echo "<a href='delete_story.php" . "?story=" . $_GET['s'] . "'>Delete Story</a>";
+								echo "<a href='delete_story.php" . "?story=" . mysql_real_escape_string($_GET['s']) . "'>Delete Story</a>";
 								?>
 								</li>
 							</ul>
@@ -169,7 +169,7 @@ $minute = substr($time, 14, 2);
 //ECHO VARIABLES
 
 echo "<p style='white-space:pre-wrap;border:0px;background-color:transparent;font-family:arial;'>" . filterwords($post) . "</p>";
-echo "<a style='float:right;' href='delete.php?p=" . $row['id_post'] . "&story=" . $_GET['s'] . "'>Delete</a><br>";
+echo "<a style='float:right;' href='delete.php?p=" . $row['id_post'] . "&story=" . mysql_real_escape_string($_GET['s']) . "'>Delete</a><br>";
 echo "<p width='100%' style='text-align:right; font-size:12px;'>" . $row['author'] . " - " . $month . "/" . $day . "/" . $year . " at " . $hour . ":" . $minute . "</p><hr>";
 
 }
