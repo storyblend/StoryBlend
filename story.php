@@ -3,14 +3,6 @@
    include('connect.php');
 
    
-///////////////////
-//Select from DB//
-///////////////// 
-$query = "SELECT * FROM posts WHERE story_list_id = " . mysql_real_escape_string($_GET['s']) . "";
-$result = mysqli_query($con, $query);
-
-
-
 
 /////////////////////
 //CHECK USER INPUT//
@@ -139,6 +131,16 @@ else {
 	<br><br>
 			
 <?php
+
+///////////////////
+//Select from DB//
+///////////////// 
+$query = "SELECT * FROM posts WHERE story_list_id = " . mysql_real_escape_string($_GET['s']) . "";
+$result = mysqli_query($con, $query);
+
+
+
+//PROFANITY FILTER
 function filterwords($post){
  $filterWords = array('fuck', 'shit', 'cunt', 'nigger', 'faggot', 'asshole', 'bitch', 'asshat', 'dick', 'ass');
  $filterCount = sizeof($filterWords);
@@ -148,9 +150,9 @@ function filterwords($post){
  return $post;
 }	
 
-while($row = mysqli_fetch_assoc($result))
 
-{
+//SET VARIABLES
+while($row = mysqli_fetch_assoc($result)) {
 
 $post = $row['post'];
 $time = $row['timestamp'];
@@ -163,9 +165,6 @@ $minute = substr($time, 14, 2);
 
 
 
-
-
-//$post = filterwords($post);
 //ECHO VARIABLES
 
 echo "<p style='white-space:pre-wrap;border:0px;background-color:transparent;font-family:arial;'>" . filterwords($post) . "</p>";
