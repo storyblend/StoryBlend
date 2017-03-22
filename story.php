@@ -140,7 +140,7 @@ else {
 			
 <?php
 function filterwords($post){
- $filterWords = array('fuck', 'shit', 'cunt', 'nigger', 'faggot', 'asshole', 'bitch', 'asshat', 'dick');
+ $filterWords = array('fuck', 'shit', 'cunt', 'nigger', 'faggot', 'asshole', 'bitch', 'asshat', 'dick', 'ass');
  $filterCount = sizeof($filterWords);
  for($i=0; $i<$filterCount; $i++){
   $post = preg_replace('/\b'.$filterWords[$i].'\b/ie',"str_repeat('*',strlen('$0'))",$post);
