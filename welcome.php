@@ -109,7 +109,7 @@
     <h3>All Stories</h3>
 <?php
 
-$query = "SELECT * FROM `story_list` WHERE `created_by_id` = $user_id OR `shared_with` = '$login_session'";
+$query = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session' OR `shared_with` = '$login_session'";
 
 $result = mysqli_query($con, $query);
 
@@ -133,7 +133,7 @@ $result = mysqli_query($con, $query);
     <h3>My Stories</h3>
 <?php
 
-$query = "SELECT * FROM `story_list` WHERE `created_by_id` = $user_id";
+$query = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session'";
 
 $result = mysqli_query($con, $query);
 

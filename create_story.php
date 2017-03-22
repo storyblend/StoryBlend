@@ -24,7 +24,7 @@ $errors = "";
 	
 	//PREPARE AND BIND
 	$stmt = $con->prepare("INSERT INTO story_list (created_by_id, shared_with, story_name, story_description) VALUES (?,?,?,?)");
-	$stmt->bind_param("isss", $user_id, $sharedwith, $story_name, $story_description);
+	$stmt->bind_param("isss", $login_session, $sharedwith, $story_name, $story_description);
 	
 	
 	
