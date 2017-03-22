@@ -169,6 +169,14 @@ header('Location:welcome.php');
 							<div class="form-group">
 							<br>
 							</div>
+							
+							<div class="form-group">
+
+                            <h3>Character Limit of Each Passage:</h3><input type="text" name="max_len" id="max_len" class="form-control" placeholder="250">
+							</div>
+							<div class="form-group">
+							<br>
+							</div>
 
 											<input type="submit" id="btn-login" style="background-color:#ABB2B9;" class="btn btn-custom btn-lg btn-block" value="Create Story">
 											</form>

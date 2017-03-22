@@ -142,7 +142,7 @@ $result = mysqli_query($con, $query);
 
 //PROFANITY FILTER
 function filterwords($post){
- $filterWords = array('fuck', 'shit', 'cunt', 'nigger', 'faggot', 'asshole', 'bitch', 'asshat', 'dick', 'ass');
+ $filterWords = array('fuck', 'shit', 'cunt', 'nigger', 'faggot', 'asshole', 'bitch', 'asshat', 'dick', 'ass', 'cock');
  $filterCount = sizeof($filterWords);
  for($i=0; $i<$filterCount; $i++){
   $post = preg_replace('/\b'.$filterWords[$i].'\b/ie',"str_repeat('*',strlen('$0'))",$post);

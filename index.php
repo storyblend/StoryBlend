@@ -132,7 +132,7 @@
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
                     <h2 class="section-heading">A new way to write:<br>How you want.</h2>
-                    <p class="lead">Set the rules and write your story how you want. With a few friends or hundreds of strangers. Set the rules and write your story how you want. With a few friends or hundreds of strangers. <br><br> Set the rules and write your story how you want. With a few friends or hundreds of strangers.</p>
+                    <p class="lead">Storyblend! Blend it up like an actual blender with Storyblend. Blend with your friends! Blend with random people! Blend at home! Blend on the go! Your stories will blend so well that you'll make a sweet, sweet, story smoothie.</p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
                     <img class="img-responsive" src="img/ipad.png" alt="">
