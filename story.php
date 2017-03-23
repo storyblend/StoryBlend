@@ -2,7 +2,10 @@
    include('session.php');
    include('connect.php');
 
-   
+
+  /////////////////////////////////////////////////////////////////////////////
+ /////////////////////////////SUBMIT POST/////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 
 /////////////////////
 //CHECK USER INPUT//
@@ -131,6 +134,10 @@ else {
 	<br><br>
 			
 <?php
+  /////////////////////////////////////////////////////////////////////////////
+ /////////////////////////////ECHO POSTS//////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+
 
 ///////////////////
 //Select from DB//
@@ -142,7 +149,7 @@ $result = mysqli_query($con, $query);
 
 //PROFANITY FILTER
 function filterwords($post){
- $filterWords = array('fuck', 'shit', 'cunt', 'nigger', 'faggot', 'asshole', 'bitch', 'asshat', 'dick', 'ass');
+ $filterWords = array('fuck', 'shit', 'cunt', 'nigger', 'faggot', 'asshole', 'bitch', 'asshat', 'dick', 'ass', 'honkey');
  $filterCount = sizeof($filterWords);
  for($i=0; $i<$filterCount; $i++){
   $post = preg_replace('/\b'.$filterWords[$i].'\b/ie',"str_repeat('*',strlen('$0'))",$post);
@@ -178,7 +185,32 @@ echo "<p width='100%' style='text-align:right; font-size:12px;'>" . $row['author
 <br><br>
 
 <form action = "" method = "post">
-<textarea name="post_input" style="width:100%;" rows="10"></textarea>
+
+<?php
+
+  /////////////////////////////////////////////////////////////////////////////
+ /////////////////////////////CHANGE TURNS////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+$query_2 = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session'";
+$result_2 = mysqli_query($con, $query_2);
+
+
+    while($row_2 = mysqli_fetch_assoc($result_2))
+    {
+
+if ($row_2['turn'] == $login_session)
+{
+echo "<textarea name='post_input' style='width:100%;' rows='10'></textarea>";
+} else {
+	echo "<h2 style='color:red;'>It is not your turn</h2>";
+}
+
+	}
+?>
+
 <br><br><input type="submit" id="btn-login" style="background-color:#ABB2B9;" class="btn btn-custom btn-lg btn-block" value="Add to Story">
 </form>
 
