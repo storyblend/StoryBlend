@@ -168,21 +168,6 @@ else {
     </div>
     <!-- /.banner -->
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="list-inline">
-                        <li>
-                            <a href="inde.php">Home</a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted small">Copyright &copy; Story Blend. All Rights Reserved</p>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
