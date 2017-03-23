@@ -169,6 +169,7 @@ header('Location:welcome.php');
 							<div class="form-group">
 							<br>
 							</div>
+						
 
 											<input type="submit" id="btn-login" style="background-color:#ABB2B9;" class="btn btn-custom btn-lg btn-block" value="Create Story">
 											</form>
