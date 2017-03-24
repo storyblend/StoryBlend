@@ -194,14 +194,14 @@ echo "<p width='100%' style='text-align:right; font-size:12px;'>" . $row['author
 
 
 
-$query_2 = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session'";
-$result_2 = mysqli_query($con, $query_2);
+$query_turn_select = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session'";
+$result_turn_select = mysqli_query($con, $query_turn_select);
 
 
-$row_2 = mysqli_fetch_assoc($result_2);
+$row_turn_select = mysqli_fetch_assoc($result_turn_select);
     
 
-if ($row_2['turn'] == $login_session)
+if ($row_turn_select['turn'] == $login_session)
 {
 echo "<textarea name='post_input' style='width:100%;' rows='10'></textarea>";
 } else {
@@ -216,7 +216,7 @@ echo "<textarea name='post_input' style='width:100%;' rows='10'></textarea>";
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	
-	$query_turn = "";
+	$query_turn_alter = "";
 	
 }
 
