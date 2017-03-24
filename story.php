@@ -198,8 +198,8 @@ $query_2 = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session'"
 $result_2 = mysqli_query($con, $query_2);
 
 
-    while($row_2 = mysqli_fetch_assoc($result_2))
-    {
+$row_2 = mysqli_fetch_assoc($result_2);
+    
 
 if ($row_2['turn'] == $login_session)
 {
@@ -208,7 +208,18 @@ echo "<textarea name='post_input' style='width:100%;' rows='10'></textarea>";
 	echo "<h2 style='color:red;'>It is not your turn</h2>";
 }
 
-	}
+	
+	
+	
+//CHANGE THE TURN//
+
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+	
+	$query_turn = "";
+	
+}
+
 ?>
 
 <br><br><input type="submit" id="btn-login" style="background-color:#ABB2B9;" class="btn btn-custom btn-lg btn-block" value="Add to Story">
