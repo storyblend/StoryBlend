@@ -36,7 +36,7 @@ else {
 
 
 	$stmt = $con->prepare("INSERT INTO posts (author, post, story_list_id, owned_by_id) VALUES (?,?,?,?)");
-	$stmt->bind_param("ssii", $login_session, $post, mysql_real_escape_string($_GET['s']), $user_id);
+	$stmt->bind_param("ssii", $login_session, $post, $_GET['s'], $user_id);
 
 	$stmt->execute();
 	$stmt->close();
@@ -109,7 +109,7 @@ else {
 								<li><a href="logout.php">Logout</a></li>
 								<li>
 								<?php
-								echo "<a href='delete_story.php" . "?story=" . mysql_real_escape_string($_GET['s']) . "'>Delete Story</a>";
+								echo "<a href='delete_story.php" . "?story=" . $_GET['s'] . "'>Delete Story</a>";
 								?>
 								</li>
 							</ul>
@@ -142,7 +142,7 @@ else {
 ///////////////////
 //Select from DB//
 ///////////////// 
-$query = "SELECT * FROM posts WHERE story_list_id = " . mysql_real_escape_string($_GET['s']) . "";
+$query = "SELECT * FROM posts WHERE story_list_id = " . $_GET['s'] . "";
 $result = mysqli_query($con, $query);
 
 
@@ -175,7 +175,7 @@ $minute = substr($time, 14, 2);
 //ECHO VARIABLES
 
 echo "<p style='white-space:pre-wrap;border:0px;background-color:transparent;font-family:arial;'>" . filterwords($post) . "</p>";
-echo "<a style='float:right;' href='delete.php?p=" . $row['id_post'] . "&story=" . mysql_real_escape_string($_GET['s']) . "'>Delete</a><br>";
+echo "<a style='float:right;' href='delete.php?p=" . $row['id_post'] . "&story=" . $_GET['s'] . "'>Delete</a><br>";
 echo "<p width='100%' style='text-align:right; font-size:12px;'>" . $row['author'] . " - " . $month . "/" . $day . "/" . $year . " at " . $hour . ":" . $minute . "</p><hr>";
 
 }
@@ -209,17 +209,17 @@ echo "<textarea name='post_input' style='width:100%;' rows='10'></textarea>";
 }
 
 	
-	
+	/*
 	
 //CHANGE THE TURN//
 
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	
-	$query_turn_alter = "";
+	$query_turn_alter = "UPDATE story_list SET turn = $SETTHIS WHERE ";
 	
 }
-
+*/
 ?>
 
 <br><br><input type="submit" id="btn-login" style="background-color:#ABB2B9;" class="btn btn-custom btn-lg btn-block" value="Add to Story">
