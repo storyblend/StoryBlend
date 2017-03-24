@@ -148,13 +148,13 @@ $result = mysqli_query($con, $query);
 
 
 //PROFANITY FILTER
-function filterwords($post){
+function filterwords($data){
  $filterWords = array('fuck', 'shit', 'cunt', 'nigger', 'faggot', 'asshole', 'bitch', 'asshat', 'dick', 'ass', 'honkey');
  $filterCount = sizeof($filterWords);
  for($i=0; $i<$filterCount; $i++){
-  $post = preg_replace('/\b'.$filterWords[$i].'\b/ie',"str_repeat('*',strlen('$0'))",$post);
+  $data = preg_replace('/\b'.$filterWords[$i].'\b/ie',"str_repeat('*',strlen('$0'))",$data);
  }
- return $post;
+ return $data;
 }	
 
 
@@ -209,7 +209,7 @@ echo "<textarea name='post_input' style='width:100%;' rows='10'></textarea>";
 }
 
 	
-	/*
+
 	
 //CHANGE THE TURN//
 
@@ -219,7 +219,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$query_turn_alter = "UPDATE story_list SET turn = $SETTHIS WHERE ";
 	
 }
-*/
+
 ?>
 
 <br><br><input type="submit" id="btn-login" style="background-color:#ABB2B9;" class="btn btn-custom btn-lg btn-block" value="Add to Story">
