@@ -19,10 +19,10 @@ $errors = "";
     die("Connection failed: " . $con->connect_error);
 	} 
 
-	$sql = "DELETE posts FROM posts WHERE id_post= " . mysql_real_escape_string($_GET['p']) . "";
+	$sql = "DELETE posts FROM posts WHERE id_post= " . $_GET['p'] . "";
 	
 	if ($con->query($sql) === TRUE) {
-	header("Location: story.php?s=" . mysql_real_escape_string($_GET['story']) . "");
+	header("Location: story.php?s=" . $_GET['story'] . "");
     //header('Location: story.php?id=' . mysql_real_escape_string($_GET['story']));
 	} 
 	else {

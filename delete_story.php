@@ -18,7 +18,7 @@ $errors = "";
     die("Connection failed: " . $con->connect_error);
 	} 
 
-	$sql = "DELETE story_list FROM story_list WHERE id= " . mysql_real_escape_string($_GET['story']) . "";
+	$sql = "DELETE story_list FROM story_list WHERE id= " . $_GET['story'] . "";
 	
 	if ($con->query($sql) === TRUE) {
 	echo "S U C C E S S";
@@ -56,7 +56,7 @@ $errors = "";
     die("Connection failed: " . $con->connect_error);
 	} 
 
-   	$sql2 = "DELETE posts FROM posts WHERE story_list_id= " . mysql_real_escape_string($_GET['story']) . "";
+   	$sql2 = "DELETE posts FROM posts WHERE story_list_id= " . $_GET['story'] . "";
 	
 	if ($con->query($sql2) === TRUE) {
 	header("Location: welcome.php");
