@@ -1,6 +1,31 @@
 <?php
    include('session.php');
    include('connect.php');
+   
+   
+   
+   
+  /////////////////////////////////////////////////////////////////////////////
+ /////////////////////////////CHECK TURN//////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+
+
+//Select story_list table
+$query_turn_select = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session'";
+$result_turn_select = mysqli_query($con, $query_turn_select);
+
+
+$row_turn_select = mysqli_fetch_assoc($result_turn_select);
+    
+//Check if it is their turn
+if ($row_turn_select['turn'] == $login_session)
+{
+echo "<textarea name='post_input' style='width:100%;' rows='10'></textarea>";
+} else {
+	echo "<h2 style='color:red;'>It is not your turn</h2>";
+}
+
+	
 
 
   /////////////////////////////////////////////////////////////////////////////
@@ -25,7 +50,7 @@ else {
 /////////
 
 
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
+if($_SERVER["REQUEST_METHOD"] == "POST") {
    
    if (empty($errors)) {
    
@@ -42,8 +67,32 @@ else {
 	$stmt->close();
 	header('Location: #');
 
+
+
+
+  /////////////////////////
+ /////CHANGE THE TURN/////
+/////////////////////////
+
+
+	//Figure out whos turn it is and change it
+	if ($row_turn_select['turn'] == $row_turn_select['created_by_id']) {
+		$set_turn_to = $row_turn_select['shared_with'];
+	}
+	elseif ($row_turn_select['turn'] == $row_turn_select['shared_with']) {
+		$set_turn_to = $row_turn_select['created_by_id'];
+	}
+	
+	$query_turn_alter = "UPDATE story_list SET turn = '$set_turn_to' WHERE story_list_id = " . $_GET['s'] . "";
+	
+	if (mysqli_query($con, $query_turn_alter)) {
+    echo "Record updated successfully";
+	} else {
+	echo "Error updating record: " . mysqli_error($con);
+	}
+
+}	
 }
-   }
 
 ?>
 
@@ -188,49 +237,7 @@ echo "<p width='100%' style='text-align:right; font-size:12px;'>" . $row['author
 
 <?php
 
-  /////////////////////////////////////////////////////////////////////////////
- /////////////////////////////CHANGE TURNS////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////
 
-
-//Select story_list table
-$query_turn_select = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session'";
-$result_turn_select = mysqli_query($con, $query_turn_select);
-
-
-$row_turn_select = mysqli_fetch_assoc($result_turn_select);
-    
-//Check if it is their turn
-if ($row_turn_select['turn'] == $login_session)
-{
-echo "<textarea name='post_input' style='width:100%;' rows='10'></textarea>";
-} else {
-	echo "<h2 style='color:red;'>It is not your turn</h2>";
-}
-
-	
-
-//ON SUBMIT//
-
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-
-//Figure out whos turn it is and change it
-if ($row_turn_select['turn'] == $row_turn_select['created_by_id']) {
-	$set_turn_to = $row_turn_select['shared_with'];
-}
-elseif ($row_turn_select['turn'] == $row_turn_select['shared_with']) {
-	$set_turn_to = $row_turn_select['created_by_id'];
-}
-	
-	$query_turn_alter = "UPDATE story_list SET turn = '$set_turn_to' WHERE story_list_id = " . $_GET['s'] . "";
-	
-	if (mysqli_query($con, $query_turn_alter)) {
-    echo "Record updated successfully";
-} else {
-    echo "Error updating record: " . mysqli_error($con);
-}
-	
-}
 
 ?>
 
