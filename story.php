@@ -215,10 +215,10 @@ echo "<textarea name='post_input' style='width:100%;' rows='10'></textarea>";
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 //Figure out whos turn it is and change it
-if ($row_turn_select['turn'] == $login_session) {
+if ($row_turn_select['turn'] == $row_turn_select['created_by_id']) {
 	$set_turn_to = $row_turn_select['shared_with'];
 }
-elseif ($row_turn_select['shared_with'] == $login_session) {
+elseif ($row_turn_select['turn'] == $row_turn_select['shared_with']) {
 	$set_turn_to = $row_turn_select['created_by_id'];
 }
 	
