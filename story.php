@@ -189,14 +189,25 @@ $result = mysqli_query($con, $query);
 
 
 //PROFANITY FILTER
-function filterwords($data){
- $filterWords = array('fuck', 'shit', 'cunt', 'nigger', 'faggot', 'asshole', 'bitch', 'asshat', 'dick', 'ass', 'honkey');
- $filterCount = sizeof($filterWords);
- for($i=0; $i<$filterCount; $i++){
-  $data = preg_replace('/\b'.$filterWords[$i].'\b/ie',"str_repeat('*',strlen('$0'))",$data);
- }
- return $data;
-}	
+
+function ReplaceBadWords($comment){
+$badword = array();
+$replacementword = array();
+$wordlist = "cock|ass|shit|fuck"; // replace with the list of bad words from attached rar file
+$words = explode("|", $wordlist);
+foreach ($words as $key => $word) {
+$badword[$key] = $word;
+$replacementword[$key] = addStars($word);
+$badword[$key] = "/\b{$badword[$key]}\b/i";
+}
+$comment = preg_replace($badword, $replacementword, $comment);
+return $comment;
+}
+
+function addStars($word) {
+$length = strlen($word);
+return substr($word, 0, 1) . str_repeat("*", $length - 2) . substr($word, $length - 1, 1);
+}
 
 
 //SET VARIABLES
@@ -214,7 +225,7 @@ $minute = substr($time, 14, 2);
 
 
 //ECHO VARIABLES
-
+$post = ReplaceBadWords($post);
 echo "<p style='white-space:pre-wrap;border:0px;background-color:transparent;font-family:arial;'>" . $post . "</p>";
 echo "<a style='float:right;' href='delete.php?p=" . $row['id_post'] . "&story=" . $_GET['s'] . "'>Delete</a><br>";
 echo "<p width='100%' style='text-align:right; font-size:12px;'>" . $row['author'] . " - " . $month . "/" . $day . "/" . $year . " at " . $hour . ":" . $minute . "</p><hr>";
