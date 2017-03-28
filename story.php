@@ -17,13 +17,7 @@ $result_turn_select = mysqli_query($con, $query_turn_select);
 
 $row_turn_select = mysqli_fetch_assoc($result_turn_select);
     
-//Check if it is their turn
-if ($row_turn_select['turn'] == $login_session)
-{
-echo "<textarea name='post_input' style='width:100%;' rows='10'></textarea>";
-} else {
-	echo "<h2 style='color:red;'>It is not your turn</h2>";
-}
+
 
 	
 
@@ -237,7 +231,13 @@ echo "<p width='100%' style='text-align:right; font-size:12px;'>" . $row['author
 
 <?php
 
-
+//Check if it is their turn
+if ($row_turn_select['turn'] == $login_session)
+{
+echo "<textarea name='post_input' style='width:100%;' rows='10'></textarea>";
+} else {
+	echo "<h2 style='color:red;'>It is not your turn</h2>";
+}
 
 ?>
 
