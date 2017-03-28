@@ -9,7 +9,7 @@
 
 
 //Select story_list table
-$query_turn_select = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session'";
+$query_turn_select = "SELECT * FROM `story_list` WHERE `id` = " . $_GET['s'] . "";
 $result_turn_select = mysqli_query($con, $query_turn_select);
 
 
@@ -237,7 +237,7 @@ if ($row_turn_select['turn'] == $login_session)
 {
 echo "<textarea name='post_input' style='width:100%;' rows='10'></textarea>";
 } else {
-	echo "<h2 style='color:red;'>It is not your turn</h2>";
+	echo "<h2 style='color:red;'>It is not your turn </h2>";
 }
 
 ?>
