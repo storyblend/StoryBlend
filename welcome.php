@@ -100,8 +100,8 @@
 					
 <ul class="nav nav-tabs">
   <li class="active"><a data-toggle="tab" href="#All">All Stories</a></li>
-  <li><a data-toggle="tab" href="#mine">My Stories</a></li>
-  <li><a data-toggle="tab" href="#shared">Shared With Me</a></li>
+  <li><a data-toggle="tab" href="#mine">My Turn</a></li>
+  <li><a data-toggle="tab" href="#theirs">Their Turn</a></li>
 </ul>
 
 <div class="tab-content">
@@ -130,10 +130,10 @@ $result = mysqli_query($con, $query);
 ?>
   </div>
   <div id="mine" class="tab-pane fade">
-    <h3>My Stories</h3>
+    <h3>My Turn</h3>
 <?php
 
-$query = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session'";
+$query = "SELECT * FROM `story_list` WHERE `turn` = '$login_session'";
 
 $result = mysqli_query($con, $query);
 
@@ -153,11 +153,11 @@ $result = mysqli_query($con, $query);
 
 ?>
   </div>
-  <div id="shared" class="tab-pane fade">
-    <h3>Shared With Me</h3>
+  <div id="theirs" class="tab-pane fade">
+    <h3>Their Turn</h3>
 <?php
 
-$query = "SELECT * FROM `story_list` WHERE `shared_with` = '$login_session'";
+$query = "SELECT * FROM `story_list` WHERE `turn` != '$login_session'";
 
 $result = mysqli_query($con, $query);
 
