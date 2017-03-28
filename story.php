@@ -75,7 +75,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		$set_turn_to = $row_turn_select['created_by_id'];
 	}
 	
-	$query_turn_alter = "UPDATE story_list SET turn = '$set_turn_to' WHERE story_list_id = " . $_GET['s'] . "";
+	$query_turn_alter = "UPDATE story_list SET turn = '$set_turn_to' WHERE id = " . $_GET['s'] . "";
 	
 	if (mysqli_query($con, $query_turn_alter)) {
     echo "Record updated successfully";
