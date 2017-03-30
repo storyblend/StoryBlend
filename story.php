@@ -153,6 +153,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 								echo "<a href='delete_story.php" . "?story=" . $_GET['s'] . "'>Delete Story</a>";
 								?>
 								</li>
+								<li><a href="print.php">Print</a></li>
 							</ul>
 						</div>
 					</li>
@@ -227,7 +228,9 @@ $minute = substr($time, 14, 2);
 //ECHO VARIABLES
 $post = ReplaceBadWords($post);
 echo "<p style='white-space:pre-wrap;border:0px;background-color:transparent;font-family:arial;'>" . $post . "</p>";
+if ($row['author'] == $login_session) {
 echo "<a style='float:right;' href='delete.php?p=" . $row['id_post'] . "&story=" . $_GET['s'] . "'>Delete</a><br>";
+}
 echo "<p width='100%' style='text-align:right; font-size:12px;'>" . $row['author'] . " - " . $month . "/" . $day . "/" . $year . " at " . $hour . ":" . $minute . "</p><hr>";
 
 }
