@@ -1,8 +1,18 @@
+<script>
+window.print()
+</script>
 <?php
    include('session.php');
    include('connect.php');
 ?>
+
 <!DOCTYPE html>
+<style>
+body {
+	margin:50px;
+}
+</style>
+
 <?php
   /////////////////////////////////////////////////////////////////////////////
  /////////////////////////////ECHO POSTS//////////////////////////////////////

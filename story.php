@@ -150,10 +150,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 								<li><a href="logout.php">Logout</a></li>
 								<li>
 								<?php
-								echo "<a href='delete_story.php" . "?story=" . $_GET['s'] . "'>Delete Story</a>";
+								echo "<a href='delete_story.php?story=" . $_GET['s'] . "'>Delete Story</a>";
 								?>
 								</li>
-								<li><a href="print.php">Print</a></li>
+								<li>
+								<?php
+								echo "<a href='print.php?s=" . $_GET['s'] . "'>Print</a>";
+								?>
+								</li>
 							</ul>
 						</div>
 					</li>
