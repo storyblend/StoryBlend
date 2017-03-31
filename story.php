@@ -227,15 +227,15 @@ $day = substr($time, 8, 2);
 $hour = substr($time, 11, 2);
 $minute = substr($time, 14, 2);
 
-
+$post = ReplaceBadWords($post);
 
 //ECHO VARIABLES
-$post = ReplaceBadWords($post);
-echo "<p style='white-space:pre-wrap;border:0px;background-color:transparent;font-family:arial;'>" . $post . "</p>";
+
+echo "<p style='margin:10px;'>" . $post . "</p>";
 if ($row['author'] == $login_session) {
 echo "<a style='float:right;' href='delete.php?p=" . $row['id_post'] . "&story=" . $_GET['s'] . "'>Delete</a><br>";
 }
-echo "<p width='100%' style='text-align:right; font-size:12px;'>" . $row['author'] . " - " . $month . "/" . $day . "/" . $year . " at " . $hour . ":" . $minute . "</p><hr>";
+echo "<p width='100%' style='text-align:right;font-size:12px;margin:10px;'>" . $row['author'] . " - " . $month . "/" . $day . "/" . $year . " at " . $hour . ":" . $minute . "</p><hr>";
 
 }
 

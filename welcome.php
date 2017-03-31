@@ -157,7 +157,7 @@ $result = mysqli_query($con, $query);
     <h3>Their Turn</h3>
 <?php
 
-$query = "SELECT * FROM `story_list` WHERE `turn` != '$login_session'";
+$query = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session' OR `shared_with` = '$login_session' AND`turn` != '$login_session'";
 
 $result = mysqli_query($con, $query);
 
