@@ -1,7 +1,7 @@
 <?php
    include("connect.php");
    session_start();
-
+$errors = "";
    
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form 
@@ -23,7 +23,7 @@
          
          header("location: welcome.php");
       }else {
-         $error = "Your Login Name or Password is invalid";
+         $errors = "<p style='color:red'>Your Login Name or Password is invalid</p>";
       }
    }
 ?>
@@ -153,6 +153,7 @@
             <div class="row">
                 <div class="col-lg-5">
                     <h2>Login to Start Writing:</h2><hr>
+					<?php echo "$errors" ?>
 					<form action = "" method = "post">
                         <div class="form-group">
                             <label for="email" class="sr-only">Email</label>
