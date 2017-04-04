@@ -207,7 +207,7 @@ return $comment;
 
 function addStars($word) {
 $length = strlen($word);
-return substr($word, 0, 1) . str_repeat("*", $length - 2) . substr($word, $length - 1, 1);
+return str_repeat("*", abs($length));
 }
 
 
