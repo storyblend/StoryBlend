@@ -2,6 +2,16 @@
 
 include('connect.php');
 
+
+$query = "SELECT * FROM `user_info`";
+
+$result = mysqli_query($con, $query);
+
+$row = mysqli_fetch_assoc($result);
+
+
+
+
 $errors = "";
 
 /////////////////////
@@ -9,9 +19,20 @@ $errors = "";
 ///////////////////
 
 //username check
+
 	if (!(empty($_POST['user']))){
-    $username = $_POST['user'];
+		while($row = mysqli_fetch_assoc($result)) {
+			if ($row['username'] != $_POST['user']){
+				$username = $_POST['user'];
+			} 
+		
+			else {
+				$errors = "<br><br><br><p style='color:red'>Username already exists</p>";
+		}
+		}
+
 	}
+
 else {
 	$errors = "<br><br><br><p style='color:red'>Username left blank</p>";
 }
