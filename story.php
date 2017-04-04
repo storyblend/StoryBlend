@@ -249,7 +249,7 @@ echo "<p width='100%' style='text-align:right;font-size:12px;margin:10px;'>" . $
 //Check if it is their turn
 if ($row_turn_select['turn'] == $login_session)
 {
-echo "<textarea name='post_input' style='width:100%;' rows='10'></textarea> <br><br><input type='submit' id='btn-login' style='background-color:#ABB2B9;' class='btn btn-custom btn-lg btn-block' value='Add to Story'>";
+echo "<textarea name='post_input' maxlength=" . $row_turn_select['char_lim'] . " style='width:100%;' rows='10'></textarea> <br><br><input type='submit' id='btn-login' style='background-color:#ABB2B9;' class='btn btn-custom btn-lg btn-block' value='Add to Story'>";
 } else {
 	echo "<h2 style='color:red;'>It is not your turn</h2><br><a href='welcome.php'>Go back to stories</a>";
 }

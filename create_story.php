@@ -23,8 +23,8 @@ $errors = "";
 	} 
 	
 	//PREPARE AND BIND
-	$stmt = $con->prepare("INSERT INTO story_list (created_by_id, shared_with, story_name, story_description, turn) VALUES (?,?,?,?,?)");
-	$stmt->bind_param("sssss", $login_session, $sharedwith, $story_name, $story_description, $login_session);
+	$stmt = $con->prepare("INSERT INTO story_list (created_by_id, shared_with, story_name, story_description, turn, char_lim) VALUES (?,?,?,?,?,?)");
+	$stmt->bind_param("sssssi", $login_session, $sharedwith, $story_name, $story_description, $login_session, $char_lim);
 	
 	
 	
@@ -56,7 +56,17 @@ else {
 else {
 	$errors = "<br><br><br>Share with left blank";
 }
-	
+
+//character limit check
+	if (!(empty($_POST['char_lim']))) {
+				$char_lim = $_POST['char_lim'];
+			}
+else {
+	$errors = "<br><br><br>Share with left blank";
+}
+
+
+
 $stmt->execute();
 $stmt->close();
 header('Location:welcome.php');
@@ -162,6 +172,12 @@ header('Location:welcome.php');
 
                             <h3>Share with user?</h3><input type="text" name="sharewith" id="sharewith" class="form-control" placeholder="Username">
 							</div>
+							
+							<div class="form-group">
+
+                            <h3>Character Limit Per Post</h3><input type="number" name="char_lim" id="char_lim" class="form-control" placeholder="10-500" value="250" max="500" min="10">
+							</div>
+							
 							<div class="form-group">
 							<br>
 							</div>
