@@ -18,7 +18,7 @@ $errors = "";
 //CHECK USER INPUT//
 ///////////////////
 
-//username check
+//username and email check
 
 	if (!(empty($_POST['user']))){
 		while($row = mysqli_fetch_assoc($result)) {
@@ -27,8 +27,20 @@ $errors = "";
 			} 
 		
 			else {
-				$errors = "<br><br><br><p style='color:red'>Username already exists</p>";
+				$errors = "<br><br><br><p style='color:red'>Username already in use.</p>";
+			}
+		if ((empty($_POST['email']))){
+			$errors = "<br><br><br><p style='color:red'>Email left blank.</p>";
 		}
+			
+			elseif ($row['email'] != $_POST['email']){
+				$email = $_POST['email'];
+			} 
+		
+			else {
+				$errors = "<br><br><br><p style='color:red'>Email already in use.</p>";
+			}
+		
 		}
 
 	}
@@ -43,21 +55,14 @@ else {
 				$password = $_POST['pass'];
 			}
 		else {
-		$errors = "<br><br><br><p style='color:red'>Passwords don't match</p>";
+		$errors = "<br><br><br><p style='color:red'>Passwords don't match.</p>";
 			}
 	}
 else {
-	$errors = "<br><br><br><p style='color:red'>Password left blank</p>";
+	$errors = "<br><br><br><p style='color:red'>Password left blank.</p>";
 }
 
 
-//email
-	if (!(empty($_POST['email']))){
-    $email = $_POST['email'];
-	}
-else {
-	$errors = "<br><br><br><p style='color:red'>Email left blank</p>";
-}
 
 ///////////
 //SUBMIT//
