@@ -263,7 +263,7 @@ echo "<p width='100%' style='text-align:right;font-size:12px;margin:10px;'>" . $
 if ($row_turn_select['turn'] == $login_session)
 {
 echo "<textarea name='post_input' maxlength=" . $row_turn_select['char_lim'] . " style='width:100%; resize:none;' rows='10' id='field' onkeyup='countChar(this)'></textarea> <br><br><input type='submit' id='btn-login' style='background-color:#ABB2B9;' class='btn btn-custom btn-lg btn-block' value='Add to Story'>";
-echo "Characters remaining: <div id='charNum'></div>";
+echo "Characters remaining: <div style='display:inline-block;' id='charNum'></div>";
 } else {
 	echo "<h2 style='color:red;'>It is not your turn</h2><br><a href='welcome.php'>Go back to stories</a>";
 }
