@@ -15,8 +15,7 @@ $result_turn_select = mysqli_query($con, $query_turn_select);
 
 $row_turn_select = mysqli_fetch_assoc($result_turn_select);
     
-
-
+$character_limit = $row_turn_select['char_lim'];
 	
 
 
@@ -119,7 +118,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+	
+    
+		<script src="http://code.jquery.com/jquery-1.5.js"></script>
+    <script>
+      function countChar(val) {
+        var len = val.value.length;
+        if (len >= "<?php echo $character_limit ?>") {
+          val.value = val.value.substring(0, "<?php echo $character_limit ?>");
+        } else {
+          $('#charNum').text("<?php echo $character_limit ?>" - len);
+        }
+      };
+    </script>
 </head>
 
 <body>
@@ -224,7 +235,7 @@ $hour = substr($time, 11, 2);
 $minute = substr($time, 14, 2);
 
 $post = ReplaceBadWords($post);
-
+$character_limit = $row['char_lim'];
 //ECHO VARIABLES
 
 echo "<p style='margin:10px;'>" . $post . "</p>";
@@ -233,9 +244,11 @@ echo "<a style='float:right;' href='delete.php?p=" . $row['id_post'] . "&story="
 }
 echo "<p width='100%' style='text-align:right;font-size:12px;margin:10px;'>" . $row['author'] . " - " . $month . "/" . $day . "/" . $year . " at " . $hour . ":" . $minute . "</p><hr>";
 
+
 }
 
 ?>
+
 
 <br><br>
 
@@ -243,13 +256,14 @@ echo "<p width='100%' style='text-align:right;font-size:12px;margin:10px;'>" . $
 
 <?php
   /////////////////////////////////////////////////////////////////////////////
- /////////////////////////////CHECK TURN//////////////////////////////////////
+ /////////////////////////////TEXT AREA///////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
 //Check if it is their turn
 if ($row_turn_select['turn'] == $login_session)
 {
-echo "<textarea name='post_input' maxlength=" . $row_turn_select['char_lim'] . " style='width:100%;' rows='10'></textarea> <br><br><input type='submit' id='btn-login' style='background-color:#ABB2B9;' class='btn btn-custom btn-lg btn-block' value='Add to Story'>";
+echo "<textarea name='post_input' maxlength=" . $row_turn_select['char_lim'] . " style='width:100%; resize:none;' rows='10' id='field' onkeyup='countChar(this)'></textarea> <br><br><input type='submit' id='btn-login' style='background-color:#ABB2B9;' class='btn btn-custom btn-lg btn-block' value='Add to Story'>";
+echo "Characters remaining: <div id='charNum'></div>";
 } else {
 	echo "<h2 style='color:red;'>It is not your turn</h2><br><a href='welcome.php'>Go back to stories</a>";
 }
