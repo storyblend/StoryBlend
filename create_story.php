@@ -13,6 +13,7 @@ $errors = "";
 //SUBMIT//
 /////////
 
+//Submits the story information into the SQL database
    if($_SERVER["REQUEST_METHOD"] == "POST") {
    
    if (empty($errors)) {

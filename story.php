@@ -119,7 +119,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 	
-    
+    <!--Characters remaining function-->
 		<script src="http://code.jquery.com/jquery-1.5.js"></script>
     <script>
       function countChar(val) {

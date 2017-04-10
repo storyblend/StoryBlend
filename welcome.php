@@ -103,7 +103,9 @@
   <div id="All" class="tab-pane fade in active">
     <h3>All Stories</h3>
 <?php
-
+  /////////////////////////////////////////////////////////////////
+ //////////////////////DISPLAYS ALL STORIES///////////////////////
+/////////////////////////////////////////////////////////////////
 $query = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session' OR `shared_with` = '$login_session'";
 
 $result = mysqli_query($con, $query);
@@ -127,7 +129,9 @@ $result = mysqli_query($con, $query);
   <div id="mine" class="tab-pane fade">
     <h3>My Turn</h3>
 <?php
-
+  /////////////////////////////////////////////////////////////////
+ //////////////////////DISPLAYS "MY TURN" STORIES/////////////////
+/////////////////////////////////////////////////////////////////
 $query = "SELECT * FROM `story_list` WHERE `turn` = '$login_session'";
 
 $result = mysqli_query($con, $query);
@@ -151,7 +155,9 @@ $result = mysqli_query($con, $query);
   <div id="theirs" class="tab-pane fade">
     <h3>Their Turn</h3>
 <?php
-
+  /////////////////////////////////////////////////////////////////
+ //////////////////////DISPLAYS "THEIR TURN" STORIES//////////////
+/////////////////////////////////////////////////////////////////
 $query = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session' AND `turn` != '$login_session' OR `shared_with` = '$login_session' AND `turn` != '$login_session'";
 
 $result = mysqli_query($con, $query);

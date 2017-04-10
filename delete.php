@@ -9,6 +9,7 @@ $errors = "";
 //SUBMIT//
 /////////
 
+//Deletes post from SQL database
 
    if($_SERVER["REQUEST_METHOD"] == "POST") {
    

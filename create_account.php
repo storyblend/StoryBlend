@@ -76,9 +76,10 @@ else {
 	if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
 	} 
-
+	//Inserts the account information into the SQL database.
 	$sql = "INSERT INTO user_info (email, username, password) VALUES ('$email', '$username', '$password')";
 
+	//Redirects the page on account creation
 	if ($con->query($sql) === TRUE) {
     header('Location: account_success.php');
 	} else {

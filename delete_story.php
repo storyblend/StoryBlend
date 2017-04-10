@@ -9,6 +9,7 @@ $errors = "";
 //SUBMIT//
 /////////
 
+//Deletes the story information from SQL database
    if($_SERVER["REQUEST_METHOD"] == "POST") {
    
    if (empty($errors)) {
@@ -47,6 +48,7 @@ $errors = "";
 //SUBMIT//
 /////////
 
+//Deletes the posts in the story from the SQL database
    if($_SERVER["REQUEST_METHOD"] == "POST") {
    
    if (empty($errors)) {
