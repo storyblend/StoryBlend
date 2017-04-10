@@ -235,7 +235,7 @@ $hour = substr($time, 11, 2);
 $minute = substr($time, 14, 2);
 
 $post = ReplaceBadWords($post);
-$character_limit = $row['char_lim'];
+
 //ECHO VARIABLES
 
 echo "<p style='margin:10px;'>" . $post . "</p>";
@@ -259,7 +259,7 @@ echo "<p width='100%' style='text-align:right;font-size:12px;margin:10px;'>" . $
  /////////////////////////////TEXT AREA///////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
-//Check if it is their turn
+//Check if it is their turn or if the story is finished
 if ($row_turn_select['turn'] == $login_session)
 {
 echo "<textarea name='post_input' maxlength=" . $row_turn_select['char_lim'] . " style='width:100%; resize:none;' rows='10' id='field' onkeyup='countChar(this)'></textarea> <br><br><input type='submit' id='btn-login' style='background-color:#ABB2B9;' class='btn btn-custom btn-lg btn-block' value='Add to Story'>";
