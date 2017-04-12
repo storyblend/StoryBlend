@@ -94,19 +94,20 @@
 					
 					
 <ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#All">All Stories</a></li>
+  <li class="active"><a data-toggle="tab" href="#Complete">Completed Stories</a></li>
   <li><a data-toggle="tab" href="#mine">My Turn</a></li>
   <li><a data-toggle="tab" href="#theirs">Their Turn</a></li>
+
 </ul>
 
 <div class="tab-content">
-  <div id="All" class="tab-pane fade in active">
-    <h3>All Stories</h3>
+ <div id="Complete" class="tab-pane fade in active">
+    <h3>Completed Stories</h3>
 <?php
   /////////////////////////////////////////////////////////////////
- //////////////////////DISPLAYS ALL STORIES///////////////////////
+ //////////////////////DISPLAYS COMPLETED/////////////////////////
 /////////////////////////////////////////////////////////////////
-$query = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session' OR `shared_with` = '$login_session'";
+$query = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session' AND `end` = 1 OR `shared_with` = '$login_session' AND `end` = 1";
 
 $result = mysqli_query($con, $query);
 
@@ -126,13 +127,14 @@ $result = mysqli_query($con, $query);
 
 ?>
   </div>
+  
   <div id="mine" class="tab-pane fade">
     <h3>My Turn</h3>
 <?php
   /////////////////////////////////////////////////////////////////
  //////////////////////DISPLAYS "MY TURN" STORIES/////////////////
 /////////////////////////////////////////////////////////////////
-$query = "SELECT * FROM `story_list` WHERE `turn` = '$login_session'";
+$query = "SELECT * FROM `story_list` WHERE `turn` = '$login_session' AND `end` = 0";
 
 $result = mysqli_query($con, $query);
 
@@ -158,7 +160,7 @@ $result = mysqli_query($con, $query);
   /////////////////////////////////////////////////////////////////
  //////////////////////DISPLAYS "THEIR TURN" STORIES//////////////
 /////////////////////////////////////////////////////////////////
-$query = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session' AND `turn` != '$login_session' OR `shared_with` = '$login_session' AND `turn` != '$login_session'";
+$query = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session' AND `turn` != '$login_session' OR `shared_with` = '$login_session' AND `turn` != '$login_session' AND `end` = 0";
 
 $result = mysqli_query($con, $query);
 
