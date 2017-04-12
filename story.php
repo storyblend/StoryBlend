@@ -28,7 +28,7 @@ $character_limit = $row_turn_select['char_lim'];
 ///////////////////
 
 if (!(empty($_POST['image_link']))) {
-$image = "<img src='" . $_POST['image_link'] . "'></img>";
+$image = "<br><img src='" . $_POST['image_link'] . "'></img>";
 }
 else {
 	$image="";
