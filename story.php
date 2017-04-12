@@ -9,7 +9,7 @@
 
 
 //Select story_list table
-$query_turn_select = "SELECT * FROM `story_list` WHERE `id` = " . mysql_real_escape_string($_GET['s']);
+$query_turn_select = "SELECT * FROM `story_list` WHERE `id` = " . $_GET['s'];
 $result_turn_select = mysqli_query($con, $query_turn_select);
 
 
@@ -27,18 +27,13 @@ $character_limit = ($row_turn_select['char_lim']);
 //CHECK USER INPUT//
 ///////////////////
 
-
-$image = "<img src='" . $_POST['image_link'] . "'></img>";
-
-
 //post check
 	if (!(empty($_POST['post_input']))){
-    $post = $_POST['post_input'] . $image;
+    $post = $_POST['post_input'];
 	}
 else {
 	$errors = "<br><br><br>Post is blank";
 }
-
 
 
 ///////////
@@ -273,28 +268,7 @@ echo "<p width='100%' style='text-align:right;font-size:12px;margin:10px;'>" . $
 <<<<<<< HEAD
 if ($row_turn_select['turn'] == $login_session)
 {
-echo "
-
-<div class='btn-toolbar' role='toolbar' aria-label='Toolbar with button groups'>
-  <div class='btn-group mr-2' role='group' aria-label='First group'>
-    <button type='button' class='btn btn-secondary'><span class='glyphicon glyphicon-align-left'></span></button>
-    <button type='button' class='btn btn-secondary'><span class='glyphicon glyphicon-align-center'></button>
-    <button type='button' class='btn btn-secondary'><span class='glyphicon glyphicon-align-right'></button>
-    <button type='button' class='btn btn-secondary'><span class='glyphicon glyphicon-align-justify'></button>
-  </div>
-  <div class='btn-group mr-2' role='group' aria-label='Second group'>
-    <button type='button' class='btn btn-secondary'>5</button>
-    <button type='button' class='btn btn-secondary'>6</button>
-    <button type='button' class='btn btn-secondary'>7</button>
-  </div>
-  <div class='btn-group' role='group' aria-label='Third group'>
-    <button type='button' class='btn btn-secondary' onclick='img_add()'><span class='glyphicon glyphicon-picture'></span></button>
-  </div>
-</div><br>
-
-<div id='image_input'></div>
-
-<textarea name='post_input' maxlength=" . $row_turn_select['char_lim'] . " style='width:100%; resize:none;' rows='10' id='field' onkeyup='countChar(this)'></textarea> <br><br><input type='submit' id='btn-login' style='background-color:#ABB2B9;' class='btn btn-custom btn-lg btn-block' value='Add to Story'>";
+echo "<textarea name='post_input' maxlength=" . $row_turn_select['char_lim'] . " style='width:100%; resize:none;' rows='10' id='field' onkeyup='countChar(this)'></textarea> <br><br><input type='submit' id='btn-login' style='background-color:#ABB2B9;' class='btn btn-custom btn-lg btn-block' value='Add to Story'>";
 echo "Characters remaining: <div style='display:inline-block;' id='charNum'></div>";
 } else {
 =======
@@ -310,12 +284,6 @@ else {
 echo "Characters remaining: <div style='display:inline-block;' id='charNum'></div>";
 }
 ?>
-
-<script>
-function img_add(){
-	document.getElementById('image_input').innerHTML = "<input type='text' name='image_link' placeholder='link to image (should end in .png or .jpg)' class='form-control'><br>";
-}
-</script>
 
 
 </form>
