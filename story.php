@@ -9,7 +9,7 @@
 
 
 //Select story_list table
-$query_turn_select = "SELECT * FROM `story_list` WHERE `id` = " . mysql_real_escape_string($_GET['s']);
+$query_turn_select = "SELECT * FROM `story_list` WHERE `id` = " . $_GET['s'];
 $result_turn_select = mysqli_query($con, $query_turn_select);
 
 
