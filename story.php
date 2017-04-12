@@ -139,6 +139,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         }
       };
     </script>
+	
+<script src="ckeditor/ckeditor.js"></script>
+
 </head>
 
 <body>
@@ -267,6 +270,8 @@ echo "<p width='100%' style='text-align:right;font-size:12px;margin:10px;'>" . $
 
 <form action = "" method = "post">
 
+
+
 <?php
   /////////////////////////////////////////////////////////////////////////////
  /////////////////////////////TEXT AREA///////////////////////////////////////
@@ -302,7 +307,7 @@ echo "
 
 <div id='image_input'></div>
 
-<textarea name='post_input' maxlength=" . $row_turn_select['char_lim'] . " style='width:100%; resize:none;' rows='10' id='field' onkeyup='countChar(this)'></textarea> <br><br><input type='submit' id='btn-login' style='background-color:#ABB2B9;' class='btn btn-custom btn-lg btn-block' value='Add to Story'>";
+<textarea id='textarea_id' name='post_input' maxlength=" . $row_turn_select['char_lim'] . " style='width:100%; resize:none;' rows='10' id='field' onkeyup='countChar(this)'></textarea> <br><br><input type='submit' id='btn-login' style='background-color:#ABB2B9;' class='btn btn-custom btn-lg btn-block' value='Add to Story'>";
 echo "Characters remaining: <div style='display:inline-block;' id='charNum'></div>";
 }
 ?>
@@ -311,6 +316,11 @@ echo "Characters remaining: <div style='display:inline-block;' id='charNum'></di
 function img_add(){
 	document.getElementById('image_input').innerHTML = "<input type='text' name='image_link' placeholder='link to image (should end in .png or .jpg)' class='form-control'><br>";
 }
+</script>
+<script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace( 'textarea_id' );
 </script>
 
 
