@@ -15,7 +15,7 @@ $result_turn_select = mysqli_query($con, $query_turn_select);
 
 $row_turn_select = mysqli_fetch_assoc($result_turn_select);
     
-$character_limit = $row_turn_select['char_lim'];
+$character_limit = ($row_turn_select['char_lim']);
 	
 
 
@@ -162,6 +162,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 								echo "<a href='print.php?s=" . $_GET['s'] . "'>Print</a>";
 								?>
 								</li>
+								<li>
+								<?php
+								echo "<a href='end.php?s=" . $_GET['s'] . "'>End story</a>";
+								?>
+								</li>
 							</ul>
 						</div>
                
@@ -265,6 +270,7 @@ echo "<p width='100%' style='text-align:right;font-size:12px;margin:10px;'>" . $
 /////////////////////////////////////////////////////////////////////////////
 
 //Check if it is their turn or if the story is finished
+<<<<<<< HEAD
 if ($row_turn_select['turn'] == $login_session)
 {
 echo "
@@ -291,9 +297,18 @@ echo "
 <textarea name='post_input' maxlength=" . $row_turn_select['char_lim'] . " style='width:100%; resize:none;' rows='10' id='field' onkeyup='countChar(this)'></textarea> <br><br><input type='submit' id='btn-login' style='background-color:#ABB2B9;' class='btn btn-custom btn-lg btn-block' value='Add to Story'>";
 echo "Characters remaining: <div style='display:inline-block;' id='charNum'></div>";
 } else {
-	echo "<h2 style='color:red;'>It is not your turn</h2><br><a href='welcome.php'>Go back to stories</a>";
+=======
+if ($row_turn_select['end'] == 1) {
+	echo "<h2 style='color:red;'>Story is completed.</h2><br><a href='welcome.php'>Go back to stories</a>";
 }
-
+elseif ($row_turn_select['turn'] != $login_session) {
+>>>>>>> origin/master
+	echo "<h2 style='color:red;'>It is not your turn</h2><br><a href='welcome.php'>Go back to stories</a>";
+} 
+else {
+	echo "<textarea name='post_input' maxlength=" . $row_turn_select['char_lim'] . " style='width:100%; resize:none;' rows='10' id='field' onkeyup='countChar(this)'></textarea> <br><br><input type='submit' id='btn-login' style='background-color:#ABB2B9;' class='btn btn-custom btn-lg btn-block' value='Add to Story'>";
+echo "Characters remaining: <div style='display:inline-block;' id='charNum'></div>";
+}
 ?>
 
 <script>
