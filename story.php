@@ -108,7 +108,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Story Blend - Login</title>
+    <title>Story Blend - <?php echo $row_turn_select['story_name']?></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -237,6 +237,9 @@ $length = strlen($word);
 return str_repeat("*", abs($length));
 }
 
+//ECHO TITLE
+
+echo "<center><h1><u>" . $row_turn_select['story_name'] . "</u></h1></center>";
 
 //SET VARIABLES
 while($row = mysqli_fetch_assoc($result)) {
