@@ -26,6 +26,11 @@ $query = "SELECT * FROM posts WHERE story_list_id = " . $_GET['s'] . "";
 $result = mysqli_query($con, $query);
 
 
+//Select story_list table
+$query_turn_select = "SELECT * FROM `story_list` WHERE `id` = " . $_GET['s'];
+$result_turn_select = mysqli_query($con, $query_turn_select);
+$row_turn_select = mysqli_fetch_assoc($result_turn_select);
+
 
 //PROFANITY FILTER
 
@@ -48,10 +53,14 @@ $length = strlen($word);
 return str_repeat("*", abs($length));
 }
 
+//ECHO TITLE
 
-//SET VARIABLES
+echo "<center><h1>" . $row_turn_select['story_name'] . "</h1></center>";
+
 while($row = mysqli_fetch_assoc($result)) {
 
+
+//SET VARIABLES
 $post = $row['post'];
 $time = $row['timestamp'];
 
