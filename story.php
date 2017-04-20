@@ -190,7 +190,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </nav>
 
 
-
+<input type="hidden" id="CharLim" value="<?php echo $character_limit ?>" />
     <!-- Page Content -->
 
 	<a  name="about"></a>
