@@ -94,41 +94,13 @@
 					
 					
 <ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#Complete">Completed Stories</a></li>
-  <li><a data-toggle="tab" href="#mine">My Turn</a></li>
+  <li class="active"><a data-toggle="tab" href="#mine">My Turn</a></li>
   <li><a data-toggle="tab" href="#theirs">Their Turn</a></li>
-
+  <li><a data-toggle="tab" href="#Complete">Completed Stories</a></li>
 </ul>
 
-<div class="tab-content">
- <div id="Complete" class="tab-pane fade in active">
-    <h3>Completed Stories</h3>
-<?php
-  /////////////////////////////////////////////////////////////////
- //////////////////////DISPLAYS COMPLETED/////////////////////////
-/////////////////////////////////////////////////////////////////
-$query = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session' AND `end` = 1 OR `shared_with` = '$login_session' AND `end` = 1";
-
-$result = mysqli_query($con, $query);
-
-
-    while($row = mysqli_fetch_assoc($result))
-    {
-        $story_name = $row['story_name'];
-        $story_description = $row['story_description'];
-		
-		//SET UP TABLE
-	echo "<table border='1' width='100%'><tr><td width='50%' style='padding:10px;'>";
-		//ECHO VARIABLES
-    echo "<a href='story.php?s=" . $row['id'] . "'>" . $story_name . "</a></td><td width='100%' style='padding:10px;'>" . $story_description  ."<br>";
-		//CLOSE TABLE
-	echo "</td></tr></table>";
-    }
-
-?>
-  </div>
-  
-  <div id="mine" class="tab-pane fade">
+<div class="tab-content">  
+  <div id="mine" class="tab-pane fade in active">
     <h3>My Turn</h3>
 <?php
   /////////////////////////////////////////////////////////////////
@@ -161,6 +133,32 @@ $result = mysqli_query($con, $query);
  //////////////////////DISPLAYS "THEIR TURN" STORIES//////////////
 /////////////////////////////////////////////////////////////////
 $query = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session' AND `turn` != '$login_session' OR `shared_with` = '$login_session' AND `turn` != '$login_session' AND `end` = 0";
+
+$result = mysqli_query($con, $query);
+
+
+    while($row = mysqli_fetch_assoc($result))
+    {
+        $story_name = $row['story_name'];
+        $story_description = $row['story_description'];
+		
+		//SET UP TABLE
+	echo "<table border='1' width='100%'><tr><td width='50%' style='padding:10px;'>";
+		//ECHO VARIABLES
+    echo "<a href='story.php?s=" . $row['id'] . "'>" . $story_name . "</a></td><td width='100%' style='padding:10px;'>" . $story_description  ."<br>";
+		//CLOSE TABLE
+	echo "</td></tr></table>";
+    }
+
+?>
+  </div>
+   <div id="Complete" class="tab-pane fade">
+    <h3>Completed Stories</h3>
+<?php
+  /////////////////////////////////////////////////////////////////
+ //////////////////////DISPLAYS COMPLETED/////////////////////////
+/////////////////////////////////////////////////////////////////
+$query = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session' AND `end` = 1 OR `shared_with` = '$login_session' AND `end` = 1";
 
 $result = mysqli_query($con, $query);
 
