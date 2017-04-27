@@ -252,7 +252,7 @@ $post = ReplaceBadWords($post);
 
 //ECHO VARIABLES
 
-echo "<p style='margin:10px; padding:10px;'>" . $post . "</p>";
+echo "<p style='margin:10px; padding:10px;margin-left:10px;margin-right:10px;'>" . $post . "</p>";
 if ($row['author'] == $login_session) {
 echo "<a style='float:right;' href='delete.php?p=" . $row['id_post'] . "&story=" . $_GET['s'] . "'>Delete</a><br>";
 }
