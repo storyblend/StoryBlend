@@ -132,7 +132,7 @@ $result = mysqli_query($con, $query);
   /////////////////////////////////////////////////////////////////
  //////////////////////DISPLAYS "THEIR TURN" STORIES//////////////
 /////////////////////////////////////////////////////////////////
-$query = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session' AND `turn` != '$login_session' OR `shared_with` = '$login_session' AND `turn` != '$login_session' AND `end` = 0";
+$query = "SELECT * FROM `story_list` WHERE `created_by_id` = '$login_session' AND `turn` != '$login_session' AND `end` = 0 OR `shared_with` = '$login_session' AND `turn` != '$login_session' AND `end` = 0";
 
 $result = mysqli_query($con, $query);
 

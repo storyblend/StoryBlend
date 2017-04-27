@@ -289,7 +289,6 @@ elseif ($row_turn_select['turn'] != $login_session) {
 else {
 echo "
 <textarea id='textarea_id' name='post_input' maxlength=" . $row_turn_select['char_lim'] . " style='width:100%; resize:none;' rows='10' id='field' onkeyup='countChar(this)'></textarea> <br><br><input type='submit' id='btn-login' style='background-color:#ABB2B9;' class='btn btn-custom btn-lg btn-block' value='Add to Story'>";
-echo "Characters remaining: <div style='display:inline-block;' id='charNum'></div>";
 }
 ?>
 
@@ -312,7 +311,6 @@ echo "Characters remaining: <div style='display:inline-block;' id='charNum'></di
 
     </div>
     <!-- /.content-section-a -->
-
 
     </div>
     <!-- /.banner -->
