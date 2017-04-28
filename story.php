@@ -1,6 +1,7 @@
 <?php
    include('session.php');
    include('connect.php');
+   $msg = "ur turn dawg";
 
 
 
@@ -8,8 +9,6 @@
 //Select story_list table
 $query_turn_select = "SELECT * FROM `story_list` WHERE `id` = " . $_GET['s'];
 $result_turn_select = mysqli_query($con, $query_turn_select);
-
-
 $row_turn_select = mysqli_fetch_assoc($result_turn_select);
     
 $character_limit = $row_turn_select['char_lim'];
@@ -69,14 +68,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   /////////////////////////
  /////CHANGE THE TURN/////
 /////////////////////////
+$turn_var = $row_turn_select['turn'];
+	if($row_turn_select['turn'] == $row_turn_select['created_by_id']){
+		$turn_var = $row_turn_select['shared_with'];
+	} elseif($row_turn_select['turn'] == $row_turn_select['shared_with']){
+		$turn_var = $row_turn_select['created_by_id'];
+	}
 
+$sql_email = "SELECT email FROM user_info WHERE username = '$turn_var'";
+      $result_email = mysqli_query($con,$sql_email);
+      $row_email = mysqli_fetch_assoc($result_email);
 
 	//Figure out whos turn it is and change it
 	if ($row_turn_select['turn'] == $row_turn_select['created_by_id']) {
 		$set_turn_to = $row_turn_select['shared_with'];
+		mail($row_email['email'], "Story Blend", $msg);
 	}
 	elseif ($row_turn_select['turn'] == $row_turn_select['shared_with']) {
 		$set_turn_to = $row_turn_select['created_by_id'];
+		mail($row_email['email'], "Story Blend", $msg);
 	}
 	
 	$query_turn_alter = "UPDATE story_list SET turn = '$set_turn_to' WHERE id = " . $_GET['s'] . "";
@@ -123,19 +133,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	
-    <!--Characters remaining function-->
-		<script src="http://code.jquery.com/jquery-1.5.js"></script>
-    <script>
-      function countChar(val) {
-        var len = val.value.length;
-        if (len >= "<?php echo $character_limit ?>") {
-          val.value = val.value.substring(0, "<?php echo $character_limit ?>");
-        } else {
-          $('#charNum').text("<?php echo $character_limit ?>" - len);
-        }
-      };
-    </script>
 	
 
 <script src="ckeditor/ckeditor.js"></script>
@@ -289,7 +286,10 @@ elseif ($row_turn_select['turn'] != $login_session) {
 else {
 echo "
 <textarea id='textarea_id' name='post_input' maxlength=" . $row_turn_select['char_lim'] . " style='width:100%; resize:none;' rows='10' id='field' onkeyup='countChar(this)'></textarea> <br><br><input type='submit' id='btn-login' style='background-color:#ABB2B9;' class='btn btn-custom btn-lg btn-block' value='Add to Story'>";
+
 }
+
+
 ?>
 
 
@@ -311,6 +311,7 @@ echo "
 
     </div>
     <!-- /.content-section-a -->
+
 
     </div>
     <!-- /.banner -->
