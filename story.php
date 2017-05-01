@@ -2,7 +2,6 @@
    include('session.php');
    include('connect.php');
    $msg = "It is your turn to blend sweet story smoothies";
-   $subj = $row_turn_select['story_name'];
 
 
 //Select story_list table
@@ -81,11 +80,11 @@ $sql_email = "SELECT email FROM user_info WHERE username = '$turn_var'";
 	//Figure out whos turn it is and change it
 	if ($row_turn_select['turn'] == $row_turn_select['created_by_id']) {
 		$set_turn_to = $row_turn_select['shared_with'];
-		mail($row_email['email'], $subj, $msg);
+	mail($row_email['email'], $row_turn_select['story_name'], $msg);
 	}
 	elseif ($row_turn_select['turn'] == $row_turn_select['shared_with']) {
 		$set_turn_to = $row_turn_select['created_by_id'];
-		mail($row_email['email'], $subj, $msg);
+		mail($row_email['email'], $row_turn_select['story_name'], $msg);
 	}
 	
 	$query_turn_alter = "UPDATE story_list SET turn = '$set_turn_to' WHERE id = " . $_GET['s'] . "";
