@@ -43,6 +43,28 @@
 </head>
 
 <body>
+<?php 
+$query_notify = "SELECT * FROM `user_info` WHERE `username` = '$login_session'";
+$result_notify = mysqli_query($con, $query_notify);
+$user_info_select = mysqli_fetch_assoc($result_notify);
+$notify = $user_info_select['notifications'];
+
+
+if ($notify == 1) {
+	$notify_button_display = 'Off';
+}
+elseif ($notify == 0) {
+	$notify_button_display = 'On';
+}
+else {
+	$notify_button_display = 'Frickin heck this is broken';
+}
+
+
+
+
+
+?>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
@@ -56,6 +78,7 @@
 								<li><a href="welcome.php">Stories</a></li>
 								<li><a href="about.php">About</a></li>
 								<li><a href="logout.php">Logout</a></li>
+								<li><?php echo "<form action = 'notifications.php' method = 'post'><input type='submit' name='notify_button' value='Turn Notifications $notify_button_display'></form>"; ?></li>
 							</ul>
 						</div>
                
