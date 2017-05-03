@@ -73,18 +73,22 @@ $turn_var = $row_turn_select['turn'];
 		$turn_var = $row_turn_select['created_by_id'];
 	}
 
-$sql_email = "SELECT email FROM user_info WHERE username = '$turn_var'";
+$sql_email = "SELECT email, notifications FROM user_info WHERE username = '$turn_var'";
       $result_email = mysqli_query($con,$sql_email);
       $row_email = mysqli_fetch_assoc($result_email);
 
 	//Figure out whos turn it is and change it
 	if ($row_turn_select['turn'] == $row_turn_select['created_by_id']) {
 		$set_turn_to = $row_turn_select['shared_with'];
-	mail($row_email['email'], $row_turn_select['story_name'], $msg);
+		if($row_email['notifications'] == 1){
+			mail($row_email['email'], $row_turn_select['story_name'], $msg);
+		}
 	}
 	elseif ($row_turn_select['turn'] == $row_turn_select['shared_with']) {
 		$set_turn_to = $row_turn_select['created_by_id'];
-		mail($row_email['email'], $row_turn_select['story_name'], $msg);
+		if($row_email['notifications'] == 1){
+			mail($row_email['email'], $row_turn_select['story_name'], $msg);
+		}
 	}
 	
 	$query_turn_alter = "UPDATE story_list SET turn = '$set_turn_to' WHERE id = " . $_GET['s'] . "";
