@@ -25,20 +25,18 @@ $errors = "";
 			if ($row['username'] != $_POST['user']){
 				$username = $_POST['user'];
 			} 
-		
 			else {
 				$errors = "<br><br><br><p style='color:red'>Username already in use.</p>";
 			}
-		if ((empty($_POST['email']))){
-			$errors = "<br><br><br><p style='color:red'>Email left blank.</p>";
-		}
 			
+		if ((!(empty($_POST['email']))) && ($row['email'] != $_POST['email'])){
+			$email = $_POST['email'];
+		}
 			elseif ($row['email'] != $_POST['email']){
-				$email = $_POST['email'];
+				$errors = "<p style='color:red'>Email already in use.</p>";
 			} 
-		
 			else {
-				$errors = "<br><br><br><p style='color:red'>Email already in use.</p>";
+				$errors = "<p style='color:red'>Email left blank.</p>";
 			}
 		
 		}
@@ -46,7 +44,7 @@ $errors = "";
 	}
 
 else {
-	$errors = "<br><br><br><p style='color:red'>Username left blank</p>";
+	$errors = "<p style='color:red'>Username left blank</p>";
 }
 
 //password check
@@ -55,11 +53,11 @@ else {
 				$password = $_POST['pass'];
 			}
 		else {
-		$errors = "<br><br><br><p style='color:red'>Passwords don't match.</p>";
+		$errors = "<p style='color:red'>Passwords don't match.</p>";
 			}
 	}
 else {
-	$errors = "<br><br><br><p style='color:red'>Password left blank.</p>";
+	$errors = "<p style='color:red'>Password left blank.</p>";
 }
 
 
@@ -90,7 +88,7 @@ else {
    }
    else
    {
-	   echo "$errors";
+
    }
 }
 ?>
@@ -162,6 +160,7 @@ else {
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
                     <h2 class="section-heading">Create Account</h2>
+					<?php echo $errors; ?>
 					<p>Already have one? <a href="index.php#login">Login</a></p><hr>
 						<form action = "" method = "post">
 							<div class="form-group">
