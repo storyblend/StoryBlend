@@ -1,15 +1,12 @@
 <?php
    include('session.php');
    include('connect.php');
-
-
+   $msg = "It is your turn to blend sweet story smoothies";
 
 
 //Select story_list table
 $query_turn_select = "SELECT * FROM `story_list` WHERE `id` = " . $_GET['s'];
 $result_turn_select = mysqli_query($con, $query_turn_select);
-
-
 $row_turn_select = mysqli_fetch_assoc($result_turn_select);
     
 $character_limit = $row_turn_select['char_lim'];
@@ -69,14 +66,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   /////////////////////////
  /////CHANGE THE TURN/////
 /////////////////////////
+$turn_var = $row_turn_select['turn'];
+	if($row_turn_select['turn'] == $row_turn_select['created_by_id']){
+		$turn_var = $row_turn_select['shared_with'];
+	} elseif($row_turn_select['turn'] == $row_turn_select['shared_with']){
+		$turn_var = $row_turn_select['created_by_id'];
+	}
 
+$sql_email = "SELECT email FROM user_info WHERE username = '$turn_var'";
+      $result_email = mysqli_query($con,$sql_email);
+      $row_email = mysqli_fetch_assoc($result_email);
 
 	//Figure out whos turn it is and change it
 	if ($row_turn_select['turn'] == $row_turn_select['created_by_id']) {
 		$set_turn_to = $row_turn_select['shared_with'];
+	mail($row_email['email'], $row_turn_select['story_name'], $msg);
 	}
 	elseif ($row_turn_select['turn'] == $row_turn_select['shared_with']) {
 		$set_turn_to = $row_turn_select['created_by_id'];
+		mail($row_email['email'], $row_turn_select['story_name'], $msg);
 	}
 	
 	$query_turn_alter = "UPDATE story_list SET turn = '$set_turn_to' WHERE id = " . $_GET['s'] . "";
@@ -123,9 +131,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	
-
-
 	
 
 <script src="ckeditor/ckeditor.js"></script>
@@ -245,7 +250,7 @@ $post = ReplaceBadWords($post);
 
 //ECHO VARIABLES
 
-echo "<p style='margin:10px; padding:10px;'>" . $post . "</p>";
+echo "<p style='margin:10px; padding:10px;margin-left:10px;margin-right:10px;'>" . $post . "</p>";
 if ($row['author'] == $login_session) {
 echo "<a style='float:right;' href='delete.php?p=" . $row['id_post'] . "&story=" . $_GET['s'] . "'>Delete</a><br>";
 }
@@ -279,7 +284,10 @@ elseif ($row_turn_select['turn'] != $login_session) {
 else {
 echo "
 <textarea id='textarea_id' name='post_input' maxlength=" . $row_turn_select['char_lim'] . " style='width:100%; resize:none;' rows='10' id='field' onkeyup='countChar(this)'></textarea> <br><br><input type='submit' id='btn-login' style='background-color:#ABB2B9;' class='btn btn-custom btn-lg btn-block' value='Add to Story'>";
+
 }
+
+
 ?>
 
 
@@ -301,6 +309,7 @@ echo "
 
     </div>
     <!-- /.content-section-a -->
+
 
     </div>
     <!-- /.banner -->
