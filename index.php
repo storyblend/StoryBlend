@@ -131,7 +131,7 @@ $errors = "";
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
                     <h2 class="section-heading">A new way to write:<br>How you want.</h2>
-                    <p class="lead">Storyblend! Blend it up like an actual blender with Storyblend. Blend with your friends! Blend with random people! Blend at home! Blend on the go! Your stories will blend so well that you'll make a sweet, sweet, story smoothie.</p>
+                    <p style="text-indent: 40px" class="lead">Storyblend! Blend it up like an actual blender with Storyblend. Blend with your friends! Blend with random people! Blend at home! Blend on the go! Your stories will blend so well that you'll make a sweet, sweet, story smoothie.</p><p style="text-indent: 40px" class="lead">This innovative system enables easy collaboration on creative writing. The turn-based writing can blend writing styles of many people for countless story outcomes. Communicating and writing stories connects diverse people in a unique way by sharing the appreciation of ideas and and the timeless value of story writing.</p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
                     <img class="img-responsive" src="img/ipad.png" alt="">
