@@ -205,8 +205,11 @@ $sql_email = "SELECT email, notifications FROM user_info WHERE username = '$turn
   /////////////////////////////////////////////////////////////////////////////
  /////////////////////////////ECHO POSTS//////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
-
-
+if(($login_session == $row_turn_select['shared_with']) or ($login_session == $row_turn_select['created_by_id'])){
+	
+	}else{
+		Header("location: welcome.php");
+	}
 ///////////////////
 //Select from DB//
 ///////////////// 
@@ -266,6 +269,7 @@ echo "<p width='100%' style='text-align:right;font-size:12px;margin:10px;'>" . $
 }
 
 ?>
+
 
 
 <br><br>
