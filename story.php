@@ -142,6 +142,7 @@ $sql_email = "SELECT email, notifications FROM user_info WHERE username = '$turn
 </head>
 
 <body>
+<a  name="toptop"></a>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
@@ -149,6 +150,8 @@ $sql_email = "SELECT email, notifications FROM user_info WHERE username = '$turn
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header" style="float:right;">
                 <div class="dropdown" style="float:right;">
+				<a class="navbar-brand topnav" href="#toptop">Top</a>
+				<a class="navbar-brand topnav" href="#textareaarea">Bottom</a>
 							<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="margin-top:7px; margin-right:25px; width:100px;">Options
 							<span class="caret"></span></button>
 							<ul class="dropdown-menu">
@@ -172,7 +175,6 @@ $sql_email = "SELECT email, notifications FROM user_info WHERE username = '$turn
 								</li>
 							</ul>
 						</div>
-               
             </div>
 			 <a class="navbar-brand topnav" href="welcome.php">Story Blend</a>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -270,7 +272,7 @@ echo "<p width='100%' style='text-align:right;font-size:12px;margin:10px;'>" . $
 
 <form action = "" method = "post">
 
-
+<a  name="textareaarea"></a>
 
 <?php
   /////////////////////////////////////////////////////////////////////////////
