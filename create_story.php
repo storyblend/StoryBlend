@@ -24,8 +24,8 @@ $errors = "";
 	} 
 	
 	//PREPARE AND BIND
-	$stmt = $con->prepare("INSERT INTO story_list (created_by_id, shared_with, story_name, story_description, turn, char_lim) VALUES (?,?,?,?,?,?)");
-	$stmt->bind_param("sssssi", $login_session, $sharedwith, $story_name, $story_description, $login_session, $char_lim);
+	$stmt = $con->prepare("INSERT INTO story_list (created_by_id, shared_with, story_name, story_description, turn, char_lim, public) VALUES (?,?,?,?,?,?,?)");
+	$stmt->bind_param("sssssii", $login_session, $sharedwith, $story_name, $story_description, $login_session, $char_lim, $public);
 	
 	
 	
@@ -66,6 +66,13 @@ else {
 	$errors = "<br><br><br>Share with left blank";
 }
 
+//public check
+	if ($_POST['public'] == "public") {
+				$public = 1;
+			}
+else {
+	$public = 0;
+}
 
 
 $stmt->execute();
@@ -177,6 +184,11 @@ header('Location:welcome.php');
 							<div class="form-group">
 
                             <h3>Character Limit Per Post</h3><input type="number" name="char_lim" id="char_lim" class="form-control" placeholder="10-500" value="250" max="500" min="10">
+							</div>
+							
+							<div class="form-group">
+
+                            <h3>Make public?</h3><input type="checkbox" name="public" id="public" style="transform:scale(1.5);" value="public">
 							</div>
 							
 							<div class="form-group">

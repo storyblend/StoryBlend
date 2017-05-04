@@ -10,9 +10,14 @@ $result_turn_select = mysqli_query($con, $query_turn_select);
 $row_turn_select = mysqli_fetch_assoc($result_turn_select);
     
 $character_limit = $row_turn_select['char_lim'];
-	
 
+if ($row_turn_select['public'] == 0) {
+	$public_button_display = 'public';
+}	
 
+else {
+	$public_button_display = 'private';
+}
   /////////////////////////////////////////////////////////////////////////////
  /////////////////////////////SUBMIT POST/////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
@@ -142,7 +147,19 @@ $sql_email = "SELECT email, notifications FROM user_info WHERE username = '$turn
 </head>
 
 <body>
+<script>
+ /** Change the style **/
+ function overStyle(object){
+    object.style.backgroundColor = '#f5f5f5';
+    // Change some other properties ...
+ }
 
+ /** Restores the style **/
+ function outStyle(object){
+    object.style.backgroundColor = 'transparent';
+    // Restore the rest ...
+ }
+</script>
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
         <div class="container topnav">
@@ -153,8 +170,6 @@ $sql_email = "SELECT email, notifications FROM user_info WHERE username = '$turn
 							<span class="caret"></span></button>
 							<ul class="dropdown-menu">
 								<li><a href="welcome.php">Stories</a></li>
-								<li><a href="about.php">About</a></li>
-								<li><a href="logout.php">Logout</a></li>
 								<li>
 								<?php
 								echo "<a href='delete_story.php?story=" . $_GET['s'] . "'>Delete Story</a>";
@@ -170,6 +185,12 @@ $sql_email = "SELECT email, notifications FROM user_info WHERE username = '$turn
 								echo "<a href='end.php?s=" . $_GET['s'] . "'>End story</a>";
 								?>
 								</li>
+								<li>
+								<?php 
+								echo "<form action = 'public.php?s=" . $_GET['s'] . "' method = 'post'> <a href='#' onmouseover='overStyle(this)' onmouseout='outStyle(this)' style='padding-top:5px; padding-bottom:5px; color:inherit;'><input type='submit' style='border:none; background-color:transparent; font-family:Lato; font-weight: 400; padding:3px 20px;  cursor: auto;     -webkit-tap-highlight-color: rgba(0,0,0,0); ' name='notify_button'  value='Make story $public_button_display'></a></form>";
+								?>
+								</li>
+								<li><a href="logout.php">Logout</a></li>
 							</ul>
 						</div>
                
