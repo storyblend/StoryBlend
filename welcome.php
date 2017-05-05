@@ -89,8 +89,8 @@ else {
 							<ul class="dropdown-menu">
 								<li><a href="welcome.php">Stories</a></li>
 								<li><a href="about.php">About</a></li>
-								<li><a href="logout.php">Logout</a></li>
 								<li><?php echo "<form action = 'notifications.php' method = 'post'> <a href='#' onmouseover='overStyle(this)' onmouseout='outStyle(this)' style='padding-top:20px; padding-bottom:20px; color:inherit;'><input type='submit' style='border:none; background-color:transparent; font-family:Lato; font-weight: 400; padding:3px 20px;  cursor: auto;     -webkit-tap-highlight-color: rgba(0,0,0,0); ' name='notify_button'  value='Turn Notifications $notify_button_display'></a></form>"; ?></li>
+								<li><a href="logout.php">Logout</a></li>							
 							</ul>
 						</div>
                

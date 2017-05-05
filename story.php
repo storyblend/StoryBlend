@@ -194,7 +194,7 @@ $sql_email = "SELECT email, notifications FROM user_info WHERE username = '$turn
 								</li>
 								<li>
 								<?php 
-								echo "<form action = 'public.php?s=" . $_GET['s'] . "' method = 'post'> <a href='#' onmouseover='overStyle(this)' onmouseout='outStyle(this)' style='padding-top:5px; padding-bottom:5px; color:inherit;'><input type='submit' style='border:none; background-color:transparent; font-family:Lato; font-weight: 400; padding:3px 20px;  cursor: auto;     -webkit-tap-highlight-color: rgba(0,0,0,0); ' name='notify_button'  value='Make story $public_button_display'></a></form>";
+								echo "<form action = 'public.php?s=" . $_GET['s'] . "' method = 'post'> <a href='#' onmouseover='overStyle(this)' onmouseout='outStyle(this)' style='padding-top:5px; padding-bottom:5px; color:inherit;'><input type='submit' style='border:none; background-color:transparent; font-family:Lato; font-weight: 400; padding:3px 20px;  ' name='notify_button'  value='Make story $public_button_display'></a></form>";
 								?>
 								</li>
 								<li><a href="logout.php">Logout</a></li>

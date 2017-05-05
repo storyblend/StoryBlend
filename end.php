@@ -94,7 +94,6 @@ if(($login_session == $row_turn_select['shared_with']) or ($login_session == $ro
 							<span class="caret"></span></button>
 							<ul class="dropdown-menu">
 								<li><a href="welcome.php">Stories</a></li>
-								<li><a href="about.php">About</a></li>
 								<li><a href="logout.php">Logout</a></li>
 							</ul>
 						</div>

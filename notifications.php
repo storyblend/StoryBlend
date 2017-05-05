@@ -7,18 +7,6 @@ $user_info_select = mysqli_fetch_assoc($result_notify);
 $notify = $user_info_select['notifications'];
 
 
-if ($notify == 1) {
-	$notify_button_display = 'Off';
-}
-elseif ($notify == 0) {
-	$notify_button_display = 'On';
-}
-else {
-	$notify_button_display = 'Frickin heck this is broken';
-}
-
-
-
 	// Check connection
 	if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
