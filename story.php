@@ -147,7 +147,7 @@ $sql_email = "SELECT email, notifications FROM user_info WHERE username = '$turn
 </head>
 
 <body>
-<<<<<<< HEAD
+
 <script>
  /** Change the style **/
  function overStyle(object){
@@ -161,10 +161,10 @@ $sql_email = "SELECT email, notifications FROM user_info WHERE username = '$turn
     // Restore the rest ...
  }
 </script>
-=======
+
 <a  name="toptop"></a>
 
->>>>>>> origin/master
+
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
         <div class="container topnav">
