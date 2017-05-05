@@ -147,6 +147,7 @@ $sql_email = "SELECT email, notifications FROM user_info WHERE username = '$turn
 </head>
 
 <body>
+<<<<<<< HEAD
 <script>
  /** Change the style **/
  function overStyle(object){
@@ -160,12 +161,18 @@ $sql_email = "SELECT email, notifications FROM user_info WHERE username = '$turn
     // Restore the rest ...
  }
 </script>
+=======
+<a  name="toptop"></a>
+
+>>>>>>> origin/master
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
         <div class="container topnav">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header" style="float:right;">
                 <div class="dropdown" style="float:right;">
+				<a class="navbar-brand topnav" href="#toptop">Top</a>
+				<a class="navbar-brand topnav" href="#textareaarea">Bottom</a>
 							<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="margin-top:7px; margin-right:25px; width:100px;">Options
 							<span class="caret"></span></button>
 							<ul class="dropdown-menu">
@@ -193,7 +200,6 @@ $sql_email = "SELECT email, notifications FROM user_info WHERE username = '$turn
 								<li><a href="logout.php">Logout</a></li>
 							</ul>
 						</div>
-               
             </div>
 			 <a class="navbar-brand topnav" href="welcome.php">Story Blend</a>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -224,8 +230,11 @@ $sql_email = "SELECT email, notifications FROM user_info WHERE username = '$turn
   /////////////////////////////////////////////////////////////////////////////
  /////////////////////////////ECHO POSTS//////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
-
-
+if(($login_session == $row_turn_select['shared_with']) or ($login_session == $row_turn_select['created_by_id'])){
+	
+	}else{
+		Header("location: welcome.php");
+	}
 ///////////////////
 //Select from DB//
 ///////////////// 
@@ -287,11 +296,12 @@ echo "<p width='100%' style='text-align:right;font-size:12px;margin:10px;'>" . $
 ?>
 
 
+
 <br><br>
 
 <form action = "" method = "post">
 
-
+<a  name="textareaarea"></a>
 
 <?php
   /////////////////////////////////////////////////////////////////////////////

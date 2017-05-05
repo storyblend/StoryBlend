@@ -6,6 +6,19 @@ include('session.php');
 $errors = "";
 
 ///////////
+//select story table//
+/////////
+$query_turn_select = "SELECT * FROM `story_list` WHERE `id` = " . $_GET['story'];
+$result_turn_select = mysqli_query($con, $query_turn_select);
+$row_turn_select = mysqli_fetch_assoc($result_turn_select);
+
+if(($login_session == $row_turn_select['shared_with']) or ($login_session == $row_turn_select['created_by_id'])){
+	
+	}else{
+		Header("location: welcome.php");
+	}
+
+///////////
 //SUBMIT//
 /////////
 
